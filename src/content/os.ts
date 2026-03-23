@@ -49,20 +49,38 @@ export const osSections: Section[] = [
         id: "os-q4",
         globalIndex: 4,
         sectionIndex: 2,
-        title: "Process Scheduling Terms",
-        text: "Key metrics used in process scheduling:",
+        title: "Process States",
+        text: "The state of a process is defined in part by the current activity of that process. A process can be in one of the following states:",
         details: [
-          "Arrival Time – Time at which the process arrives in the ready queue.",
-          "Completion Time – Time at which process completes its execution.",
-          "Burst Time – Time required by a process for CPU execution.",
-          "Turn Around Time – Time Difference between completion time and arrival time (TAT = CT - AT).",
-          "Waiting Time (WT) – Time Difference between turn around time and burst time (WT = TAT - BT)."
+          "New: The process is being created.",
+          "Ready: The process is waiting to be assigned to a processor.",
+          "Run: Instructions are being executed.",
+          "Block or wait: The process is waiting for some event to occur (such as an I/O completion or reception of a signal).",
+          "Completion or termination: The process has finished execution.",
+          "Suspend ready: When the ready queue becomes full, some processes are moved to suspend ready state.",
+          "Suspend wait or suspend block: When waiting queue becomes full."
         ]
       },
       {
         id: "os-q5",
         globalIndex: 5,
         sectionIndex: 3,
+        title: "Process Control Block (PCB)",
+        text: "Each process is represented in the operating system by a process control block (PCB) - also called a task control block. It contains many pieces of information associated with a specific process, including:",
+        details: [
+          "Process state",
+          "Program counter",
+          "CPU registers",
+          "CPU scheduling information",
+          "Memory-management information",
+          "Accounting information",
+          "I/O status information"
+        ]
+      },
+      {
+        id: "os-q6",
+        globalIndex: 6,
+        sectionIndex: 4,
         title: "Thread",
         text: "A thread is a lightweight process and forms the basic unit of CPU utilization. A process can perform more than one task at the same time by including multiple threads.",
         details: [
@@ -71,6 +89,35 @@ export const osSections: Section[] = [
           "fork() system call: A new thread, or a child process of a given process, can be introduced by using the fork() system call. A process with n fork() system call generates 2^n – 1 child processes.",
           "User threads: Implemented by users.",
           "Kernel threads: Implemented by OS."
+        ]
+      },
+      {
+        id: "os-q7",
+        globalIndex: 7,
+        sectionIndex: 5,
+        title: "Difference between Process and Thread",
+        text: "Key differences between a process and a thread:",
+        details: [
+          "Process is heavy weight or resource intensive. Thread is light weight, taking fewer resources.",
+          "Process switching needs interaction with operating system. Thread switching does not need to interact with operating system.",
+          "In multiple processing environments, each process executes the same code but has its own memory and file resources. All threads can share same set of open files, child processes.",
+          "If one process is blocked, then no other process can execute until the first process is unblocked. While one thread is blocked and waiting, a second thread in the same task can run.",
+          "Multiple processes without using threads use more resources. Multiple threaded processes use fewer resources.",
+          "In multiple processes each process operates independently of the others. One thread can read, write or change another thread's data."
+        ]
+      },
+      {
+        id: "os-q8",
+        globalIndex: 8,
+        sectionIndex: 6,
+        title: "Process Scheduling Terms",
+        text: "Key metrics used in process scheduling:",
+        details: [
+          "Arrival Time – Time at which the process arrives in the ready queue.",
+          "Completion Time – Time at which process completes its execution.",
+          "Burst Time – Time required by a process for CPU execution.",
+          "Turn Around Time – Time Difference between completion time and arrival time (TAT = CT - AT).",
+          "Waiting Time (WT) – Time Difference between turn around time and burst time (WT = TAT - BT)."
         ]
       }
     ]
@@ -83,9 +130,20 @@ export const osSections: Section[] = [
     gradient: "from-emerald-500/20 to-teal-500/20",
     questions: [
       {
-        id: "os-q6",
-        globalIndex: 6,
+        id: "os-q9",
+        globalIndex: 9,
         sectionIndex: 1,
+        title: "Scheduling (Preemptive vs Non-Preemptive)",
+        text: "Types of CPU scheduling:",
+        details: [
+          "Preemptive Scheduling: The CPU is allocated to the processes for a limited time. If a process with higher priority arrives, the currently running process is interrupted and moved to the ready queue.",
+          "Non-Preemptive Scheduling: Once the CPU has been allocated to a process, the process keeps the CPU until it releases the CPU either by terminating or by switching to the waiting state."
+        ]
+      },
+      {
+        id: "os-q10",
+        globalIndex: 10,
+        sectionIndex: 2,
         title: "CPU Scheduling Algorithms",
         text: "Algorithms used to allocate CPU time to processes in the ready queue:",
         details: [
@@ -109,8 +167,8 @@ export const osSections: Section[] = [
     gradient: "from-rose-500/20 to-pink-500/20",
     questions: [
       {
-        id: "os-q7",
-        globalIndex: 7,
+        id: "os-q11",
+        globalIndex: 11,
         sectionIndex: 1,
         title: "The Critical Section Problem",
         text: "The Critical Section is the portion of the code in the program where shared variables are accessed and/or updated.",
@@ -122,8 +180,8 @@ export const osSections: Section[] = [
         ]
       },
       {
-        id: "os-q8",
-        globalIndex: 8,
+        id: "os-q12",
+        globalIndex: 12,
         sectionIndex: 2,
         title: "Synchronization Tools",
         text: "Tools used to manage concurrent access to shared data:",
@@ -133,15 +191,23 @@ export const osSections: Section[] = [
         ]
       },
       {
-        id: "os-q9",
-        globalIndex: 9,
+        id: "os-q13",
+        globalIndex: 13,
         sectionIndex: 3,
-        title: "Deadlocks",
-        text: "A situation where a set of processes are blocked because each process is holding a resource and waiting for another resource acquired by some other process.",
+        title: "Deadlock Handling",
+        text: "There are three ways to handle deadlock:",
         details: [
-          "Necessary Conditions: Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait.",
-          "Handling Methods: Deadlock prevention or avoidance (Banker's algorithm), Deadlock detection and recovery, or Ignore the problem all together (Windows/UNIX approach)."
+          "Deadlock prevention or avoidance: The idea is to not let the system into a deadlock state. Banker's algorithm is used for deadlock avoidance.",
+          "Deadlock detection and recovery: Let deadlock occur, then do preemption to handle it once occurred.",
+          "Ignore the problem all together: If deadlock is very rare, then let it happen and reboot the system. This is the approach that both Windows and UNIX take."
         ]
+      },
+      {
+        id: "os-q14",
+        globalIndex: 14,
+        sectionIndex: 4,
+        title: "Banker's Algorithm",
+        text: "Banker's algorithm is a deadlock avoidance algorithm. It is named so because this algorithm is used in banking systems to determine whether a loan can be granted or not. When a new process is created, it must specify the maximum instances of each resource type that it may need."
       }
     ]
   },
@@ -153,8 +219,8 @@ export const osSections: Section[] = [
     gradient: "from-blue-500/20 to-indigo-500/20",
     questions: [
       {
-        id: "os-q10",
-        globalIndex: 10,
+        id: "os-q15",
+        globalIndex: 15,
         sectionIndex: 1,
         title: "Memory Management Techniques",
         text: "Techniques allowing memory to be shared among multiple processes:",
@@ -167,8 +233,8 @@ export const osSections: Section[] = [
         ]
       },
       {
-        id: "os-q11",
-        globalIndex: 11,
+        id: "os-q16",
+        globalIndex: 16,
         sectionIndex: 2,
         title: "Paging & Segmentation",
         text: "Advanced memory management strategies:",
@@ -179,8 +245,8 @@ export const osSections: Section[] = [
         ]
       },
       {
-        id: "os-q12",
-        globalIndex: 12,
+        id: "os-q17",
+        globalIndex: 17,
         sectionIndex: 3,
         title: "Page Replacement Algorithms",
         text: "Algorithms used to decide which page to replace when a page fault occurs:",
@@ -188,6 +254,17 @@ export const osSections: Section[] = [
           "First In First Out (FIFO) – Simplest algorithm. Operating system keeps track of all pages in the memory in a queue, oldest page in front. Belady’s anomaly: possible to have more page faults when increasing the number of page frames.",
           "Optimal Page replacement – Pages are replaced which are not used for the longest duration of time in the future. Perfect but not possible in practice.",
           "Least Recently Used (LRU) – The page will be replaced with the one which is least recently used."
+        ]
+      },
+      {
+        id: "os-q18",
+        globalIndex: 18,
+        sectionIndex: 4,
+        title: "Cache Memory & TLB",
+        text: "Hardware components to speed up memory access:",
+        details: [
+          "Cache Memory: An extremely fast memory type that acts as a buffer between RAM and the CPU. It holds frequently requested data and instructions so that they are immediately available to the CPU when needed.",
+          "TLB (Translation Lookaside Buffer): A memory cache that is used to reduce the time taken to access a user memory location. It is a part of the chip's memory-management unit (MMU)."
         ]
       }
     ]
@@ -200,8 +277,8 @@ export const osSections: Section[] = [
     gradient: "from-violet-500/20 to-purple-500/20",
     questions: [
       {
-        id: "os-q13",
-        globalIndex: 13,
+        id: "os-q19",
+        globalIndex: 19,
         sectionIndex: 1,
         title: "Disk Scheduling Metrics",
         text: "Metrics used to evaluate disk performance:",
@@ -214,8 +291,8 @@ export const osSections: Section[] = [
         ]
       },
       {
-        id: "os-q14",
-        globalIndex: 14,
+        id: "os-q20",
+        globalIndex: 20,
         sectionIndex: 2,
         title: "Disk Scheduling Algorithms",
         text: "Algorithms used to schedule I/O requests arriving for disk:",
@@ -238,12 +315,14 @@ export const osSections: Section[] = [
     gradient: "from-pink-500/20 to-rose-500/20",
     questions: [
       {
-        id: "os-q15",
-        globalIndex: 15,
+        id: "os-q21",
+        globalIndex: 21,
         sectionIndex: 1,
         title: "OS Architecture & Memory Terms",
         text: "Important concepts in OS design and operation:",
         details: [
+          "System Call: The programmatic way in which a computer program requests a service from the kernel of the operating system it is executed on.",
+          "Kernel: The central component of most computer operating systems; it is a bridge between applications and the actual data processing done at the hardware level.",
           "Monolithic kernel: Includes all operating system code in a single executable image.",
           "Micro kernel: Runs minimal performance affecting services; other operations performed by processor.",
           "Macro Kernel: Combination of micro and monolithic kernel.",
@@ -255,18 +334,53 @@ export const osSections: Section[] = [
         ]
       },
       {
-        id: "os-q16",
-        globalIndex: 16,
+        id: "os-q22",
+        globalIndex: 22,
         sectionIndex: 2,
         title: "OS Performance Terms",
         text: "Terms related to OS efficiency and resource management:",
         details: [
+          "Throughput: The number of processes that complete their execution per time unit.",
           "Fragmentation: Memory wastage. Internal (fixed size units) and External (variable size units).",
+          "Compaction: A technique to overcome external fragmentation. It involves shifting all the occupied memory blocks to one end of the memory, creating a single large contiguous block of free memory.",
           "Spooling: Data gathered to be used and executed by a device (e.g., printing).",
           "Starvation: Resource management problem where a process doesn't get resources for a long time.",
           "Aging: Technique used to avoid starvation in the resource scheduling system.",
           "Thrashing: Phenomenon in virtual memory schemes when the processor spends most of its time in swapping pages rather than executing instructions.",
           "Advantages of multithreaded programming: Enhanced responsiveness, resource sharing, economical, utilizes multiprocessing architecture."
+        ]
+      },
+      {
+        id: "os-q23",
+        globalIndex: 23,
+        sectionIndex: 3,
+        title: "Booting & BIOS",
+        text: "The process of starting a computer:",
+        details: [
+          "Booting: The process of starting a computer. It can be initiated by hardware such as a button press, or by a software command.",
+          "BIOS (Basic Input/Output System): Firmware used to perform hardware initialization during the booting process (power-on startup), and to provide runtime services for operating systems and programs."
+        ]
+      },
+      {
+        id: "os-q24",
+        globalIndex: 24,
+        sectionIndex: 4,
+        title: "GUI vs CLI",
+        text: "Types of user interfaces:",
+        details: [
+          "GUI (Graphical User Interface): Allows users to interact with electronic devices through graphical icons and audio indicator such as primary notation, instead of text-based UIs, typed command labels or text navigation.",
+          "CLI (Command-Line Interface): Processes commands to a computer program in the form of lines of text."
+        ]
+      },
+      {
+        id: "os-q25",
+        globalIndex: 25,
+        sectionIndex: 5,
+        title: "File System & Directory Structure",
+        text: "How data is organized on storage devices:",
+        details: [
+          "File System: A method and data structure that the operating system uses to control how data is stored and retrieved.",
+          "Directory Structure: The organization of files into a hierarchy of folders (directories). Common structures include Single-Level, Two-Level, Tree-Structured, Acyclic-Graph, and General Graph Directory."
         ]
       }
     ]

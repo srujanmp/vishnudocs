@@ -387,14 +387,67 @@ export const dbmsSections: Section[] = [
         id: "dbms-q26",
         globalIndex: 26,
         sectionIndex: 2,
-        title: "SELECT & WHERE Clause",
-        text: "The SELECT statement is used to select data from a database, and WHERE is used to filter records.",
-        code: "SELECT column1, column2 FROM table_name WHERE condition;"
+        title: "SELECT, DISTINCT & WHERE Clause",
+        text: "The SELECT statement is used to select data from a database. SELECT DISTINCT returns only distinct (different) values. WHERE is used to filter records.",
+        code: "SELECT DISTINCT column1, column2 FROM table_name WHERE condition;"
       },
       {
         id: "dbms-q27",
         globalIndex: 27,
         sectionIndex: 3,
+        title: "AND, OR and NOT",
+        text: "The WHERE clause can be combined with AND, OR, and NOT operators.",
+        details: [
+          "The AND operator displays a record if all the conditions separated by AND are TRUE.",
+          "The OR operator displays a record if any of the conditions separated by OR is TRUE.",
+          "The NOT operator displays a record if the condition(s) is NOT TRUE."
+        ],
+        code: "SELECT column1, column2 FROM table_name WHERE condition1 AND condition2 OR NOT condition3;"
+      },
+      {
+        id: "dbms-q28",
+        globalIndex: 28,
+        sectionIndex: 4,
+        title: "ORDER BY",
+        text: "The ORDER BY keyword is used to sort the result-set in ascending or descending order. It sorts the records in ascending order by default. To sort the records in descending order, use the DESC keyword.",
+        code: "SELECT column1, column2 FROM table_name ORDER BY column1 ASC, column2 DESC;"
+      },
+      {
+        id: "dbms-q29",
+        globalIndex: 29,
+        sectionIndex: 5,
+        title: "INSERT INTO",
+        text: "The INSERT INTO statement is used to insert new records in a table.",
+        code: "INSERT INTO table_name (column1, column2, column3) VALUES (value1, value2, value3);"
+      },
+      {
+        id: "dbms-q30",
+        globalIndex: 30,
+        sectionIndex: 6,
+        title: "NULL Value",
+        text: "It is not possible to test for NULL values with comparison operators, such as =, <, or <>. We will have to use the IS NULL and IS NOT NULL operators instead.",
+        code: "SELECT column_names FROM table_name WHERE column_name IS NULL;"
+      },
+      {
+        id: "dbms-q31",
+        globalIndex: 31,
+        sectionIndex: 7,
+        title: "UPDATE & DELETE",
+        text: "The UPDATE statement is used to modify the existing records in a table. The DELETE statement is used to delete existing records in a table.",
+        code: "UPDATE table_name SET column1 = value1 WHERE condition;\nDELETE FROM table_name WHERE condition;"
+      },
+      {
+        id: "dbms-q32",
+        globalIndex: 32,
+        sectionIndex: 8,
+        title: "SELECT TOP",
+        text: "The SELECT TOP clause is used to specify the number of records to return.",
+        code: "SELECT TOP number|percent column_name(s) FROM table_name WHERE condition;\n-- Or using LIMIT:\nSELECT column_name(s) FROM table_name LIMIT number;"
+      },
+      {
+        id: "dbms-q33",
+        globalIndex: 33,
+        sectionIndex: 9,
         title: "Aggregate Functions",
         text: "Aggregate functions perform a calculation on a set of values and return a single value.",
         details: [
@@ -406,9 +459,29 @@ export const dbmsSections: Section[] = [
         ]
       },
       {
-        id: "dbms-q28",
-        globalIndex: 28,
-        sectionIndex: 4,
+        id: "dbms-q34",
+        globalIndex: 34,
+        sectionIndex: 10,
+        title: "LIKE Operator",
+        text: "The LIKE operator is used in a WHERE clause to search for a specified pattern in a column.",
+        details: [
+          "The percent sign (%) represents zero, one, or multiple characters.",
+          "The underscore sign (_) represents one, single character."
+        ],
+        code: "SELECT column1 FROM table_name WHERE columnN LIKE pattern;"
+      },
+      {
+        id: "dbms-q35",
+        globalIndex: 35,
+        sectionIndex: 11,
+        title: "IN & BETWEEN",
+        text: "The IN operator allows you to specify multiple values in a WHERE clause (shorthand for multiple OR conditions). The BETWEEN operator selects values within a given range (inclusive).",
+        code: "SELECT column_name(s) FROM table_name WHERE column_name IN (value1, value2);\nSELECT column_name(s) FROM table_name WHERE column_name BETWEEN value1 AND value2;"
+      },
+      {
+        id: "dbms-q36",
+        globalIndex: 36,
+        sectionIndex: 12,
         title: "Joins in SQL",
         text: "A JOIN clause is used to combine rows from two or more tables, based on a related column between them.",
         details: [
@@ -419,12 +492,35 @@ export const dbmsSections: Section[] = [
         ]
       },
       {
-        id: "dbms-q29",
-        globalIndex: 29,
-        sectionIndex: 5,
+        id: "dbms-q37",
+        globalIndex: 37,
+        sectionIndex: 13,
+        title: "UNION",
+        text: "The UNION operator is used to combine the result-set of two or more SELECT statements. Every SELECT statement within UNION must have the same number of columns, similar data types, and in the same order. UNION selects only distinct values by default. To allow duplicate values, use UNION ALL.",
+        code: "SELECT column_name(s) FROM table1 UNION SELECT column_name(s) FROM table2;"
+      },
+      {
+        id: "dbms-q38",
+        globalIndex: 38,
+        sectionIndex: 14,
         title: "GROUP BY & HAVING",
         text: "GROUP BY groups rows that have the same values into summary rows. HAVING is used because the WHERE keyword cannot be used with aggregate functions.",
         code: "SELECT column_name(s) FROM table_name WHERE condition GROUP BY column_name(s) HAVING condition ORDER BY column_name(s);"
+      },
+      {
+        id: "dbms-q39",
+        globalIndex: 39,
+        sectionIndex: 15,
+        title: "DDL Commands (CREATE, DROP, ALTER, TRUNCATE)",
+        text: "Data Definition Language commands are used to define the database structure.",
+        details: [
+          "CREATE DATABASE databasename; - creates a new database.",
+          "DROP DATABASE databasename; - drops an existing database.",
+          "CREATE TABLE table_name (column1 datatype, ...); - creates a new table.",
+          "DROP TABLE table_name; - drops an existing table.",
+          "TRUNCATE TABLE table_name; - deletes the data inside a table, but not the table itself.",
+          "ALTER TABLE table_name ADD column_name datatype; - adds, deletes, or modifies columns in an existing table."
+        ]
       }
     ]
   }

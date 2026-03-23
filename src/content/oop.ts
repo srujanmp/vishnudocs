@@ -189,6 +189,110 @@ export const oopSections: Section[] = [
         sectionIndex: 5,
         title: "Abstract Classes",
         text: "A class made abstract by declaring at least one function as a pure virtual function (= 0). It cannot be used to declare objects of its own; implementation must be provided by derived classes."
+      },
+      {
+        id: "oop-q15",
+        globalIndex: 15,
+        sectionIndex: 6,
+        title: "Interface",
+        text: "An interface is a blueprint of a class. It has static constants and abstract methods. It is used to achieve fully abstraction and multiple inheritance in Java.",
+        details: [
+          "Abstract Class vs Interface: Abstract class can have abstract and non-abstract methods, whereas interface has only abstract methods (until Java 8). Abstract class doesn't support multiple inheritance, but interface does. Abstract class can have final, non-final, static and non-static variables, whereas interface has only static and final variables."
+        ]
+      },
+      {
+        id: "oop-q16",
+        globalIndex: 16,
+        sectionIndex: 7,
+        title: "Inline Function",
+        text: "An inline function is a function that is expanded in line when it is called. When the inline function is called whole code of the inline function gets inserted or substituted at the point of inline function call. This substitution is performed by the C++ compiler at compile time."
+      },
+      {
+        id: "oop-q17",
+        globalIndex: 17,
+        sectionIndex: 8,
+        title: "Important Keywords",
+        text: "Keywords used to define specific behaviors in OOP:",
+        details: [
+          "Static Keyword: Used for memory management. It can be applied to variables, methods, blocks, and nested classes. The static keyword belongs to the class than an instance of the class.",
+          "Final Keyword: Used to restrict the user. It can be used in many contexts: final variable (cannot change value), final method (cannot be overridden), final class (cannot be inherited).",
+          "Super Keyword: A reference variable which is used to refer immediate parent class object."
+        ]
+      },
+      {
+        id: "oop-q18",
+        globalIndex: 18,
+        sectionIndex: 9,
+        title: "Exception Handling",
+        text: "The Exception Handling in Java is one of the powerful mechanism to handle the runtime errors so that normal flow of the application can be maintained.",
+        details: [
+          "try: The \"try\" keyword is used to specify a block where we should place exception code.",
+          "catch: The \"catch\" block is used to handle the exception.",
+          "finally: The \"finally\" block is used to execute the important code of the program. It is executed whether an exception is handled or not.",
+          "throw: The \"throw\" keyword is used to throw an exception.",
+          "throws: The \"throws\" keyword is used to declare exceptions."
+        ]
+      },
+      {
+        id: "oop-q19",
+        globalIndex: 19,
+        sectionIndex: 10,
+        title: "Memory Management",
+        text: "Concepts related to memory in OOP:",
+        details: [
+          "Garbage Collection: The process of reclaiming the runtime unused memory automatically. In C/C++, programmer is responsible for both creation and destruction of objects. In Java, it is performed automatically.",
+          "Memory Leak: A memory leak occurs when programmers create a memory in heap and forget to delete it."
+        ]
+      },
+      {
+        id: "oop-q20",
+        globalIndex: 20,
+        sectionIndex: 11,
+        title: "Shallow Copy vs Deep Copy",
+        text: "Different ways of copying objects:",
+        details: [
+          "Shallow Copy: An object is created by simply copying the data of all variables of the original object. If some variables are dynamically allocated memory, then the copied object variable will also reference the same memory location.",
+          "Deep Copy: An object is created by copying data of all variables, and it also allocates similar memory resources with the same value to the object."
+        ]
+      },
+      {
+        id: "oop-q21",
+        globalIndex: 21,
+        sectionIndex: 12,
+        title: "Early Binding vs Late Binding",
+        text: "Binding refers to the linking of a procedure call to the code to be executed in response to the call.",
+        details: [
+          "Early Binding (Static Binding): The binding which can be resolved at compile time by compiler. E.g., method overloading.",
+          "Late Binding (Dynamic Binding): The binding which can be resolved at run time. E.g., method overriding."
+        ]
+      },
+      {
+        id: "oop-q22",
+        globalIndex: 22,
+        sectionIndex: 13,
+        title: "Method Hiding & Constructor Overloading",
+        text: "Additional OOP concepts:",
+        details: [
+          "Method Hiding: If a subclass defines a static method with the same signature as a static method in the superclass, then the method in the subclass hides the one in the superclass.",
+          "Constructor Overloading: A technique of having more than one constructor with different parameter lists."
+        ]
+      },
+      {
+        id: "oop-q23",
+        globalIndex: 23,
+        sectionIndex: 14,
+        title: "Common OOP Questions",
+        text: "Frequently asked questions regarding overriding and overloading:",
+        details: [
+          "Can we overload main method? Yes, we can overload the main method.",
+          "Can we override static method? No, we cannot override static methods because method overriding is based on dynamic binding at runtime and the static methods are bonded using static binding at compile time.",
+          "Can we override private method? No, we cannot override private methods because they are not accessible outside the class.",
+          "Can we override final method? No, we cannot override final methods.",
+          "Can we override constructor? No, we cannot override constructors.",
+          "Can we inherit constructor? No, constructors are not inherited.",
+          "Can we inherit private members? No, private members are not inherited.",
+          "Can we inherit final class? No, final classes cannot be inherited."
+        ]
       }
     ]
   },
@@ -200,8 +304,8 @@ export const oopSections: Section[] = [
     gradient: "from-cyan-500/20 to-blue-500/20",
     questions: [
       {
-        id: "oop-q15",
-        globalIndex: 15,
+        id: "oop-q24",
+        globalIndex: 24,
         sectionIndex: 1,
         title: "Namespaces",
         text: "A logical division of code designed to stop naming conflicts and define scope for identifiers.",
@@ -211,8 +315,8 @@ export const oopSections: Section[] = [
         ]
       },
       {
-        id: "oop-q16",
-        globalIndex: 16,
+        id: "oop-q25",
+        globalIndex: 25,
         sectionIndex: 2,
         title: "Access Specifiers",
         text: "Define how functions and variables can be accessed outside the class:",
@@ -223,8 +327,8 @@ export const oopSections: Section[] = [
         ]
       },
       {
-        id: "oop-q17",
-        globalIndex: 17,
+        id: "oop-q26",
+        globalIndex: 26,
         sectionIndex: 3,
         title: "Additional OOP Notes",
         text: "Key technical details in C++ OOP:",
