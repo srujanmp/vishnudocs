@@ -33,10 +33,10 @@ export function Navbar({ onToggleSidebar, isSidebarOpen }: NavbarProps) {
         </button>
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center shadow-[0_0_15px_var(--primary)]">
-            <span className="text-white font-black text-lg tracking-tighter italic">N</span>
+            <span className="text-white font-black text-lg tracking-tighter italic">V</span>
           </div>
           <span className="text-xl font-black tracking-tighter hidden sm:block">
-            NET<span className="text-primary">DOCS</span>
+            VISHNU<span className="text-primary">DOCS</span>
           </span>
         </div>
       </div>
@@ -67,7 +67,7 @@ export function Navbar({ onToggleSidebar, isSidebarOpen }: NavbarProps) {
           )}
         </button>
         <a
-          href="https://github.com"
+          href="https://github.com/srujanmp/vishnudocs"
           target="_blank"
           rel="noopener noreferrer"
           className="p-2.5 rounded-xl glass hover:bg-white/10 transition-all hidden sm:flex"
