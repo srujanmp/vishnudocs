@@ -28,6 +28,7 @@
   html { scroll-behavior: smooth; }
 
   body {
+    font-size: 17px;
     background: var(--bg);
     color: var(--text);
     font-family: var(--font-display);
@@ -131,6 +132,25 @@
   .nav-pill.r2:hover { background: rgba(247,106,138,0.22); }
   .nav-pill.r3 { background: rgba(106,247,199,0.12); border-color: rgba(106,247,199,0.4); color: var(--r3); }
   .nav-pill.r3:hover { background: rgba(106,247,199,0.22); }
+
+  .leetcode-link { color: #c6bbff; text-decoration: none; border-bottom: 1px dashed rgba(124,106,247,0.45); }
+  .leetcode-link:hover { color: #ffffff; border-bottom-color: rgba(124,106,247,0.95); }
+
+  .mcq-doc-btn {
+    margin-top: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.45rem 0.75rem;
+    border-radius: 10px;
+    border: 1px solid rgba(124,106,247,0.45);
+    color: #d5ceff;
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+  }
+  .mcq-doc-btn:hover { background: rgba(124,106,247,0.16); }
 
   .dot { width: 8px; height: 8px; border-radius: 50%; }
   .r1 .dot { background: var(--r1); }
@@ -686,18 +706,18 @@
     <table class="resource-table">
       <thead><tr><th>#</th><th>Problem</th><th>Pattern</th><th>Difficulty</th></tr></thead>
       <tbody>
-        <tr><td>1</td><td>Two Sum</td><td><span class="tag">HashMap</span></td><td><span class="topic-difficulty diff-easy">Easy</span></td></tr>
-        <tr><td>2</td><td>Best Time to Buy & Sell Stock</td><td><span class="tag">Greedy</span><span class="tag">Sliding Window</span></td><td><span class="topic-difficulty diff-easy">Easy</span></td></tr>
-        <tr><td>3</td><td>Product of Array Except Self</td><td><span class="tag">Prefix Sum</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
-        <tr><td>4</td><td>Maximum Subarray</td><td><span class="tag">Kadane</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
-        <tr><td>5</td><td>Move Zeroes</td><td><span class="tag">Two Pointer</span></td><td><span class="topic-difficulty diff-easy">Easy</span></td></tr>
-        <tr><td>6</td><td>Container With Most Water</td><td><span class="tag">Two Pointer</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
-        <tr><td>7</td><td>3Sum</td><td><span class="tag">Two Pointer</span><span class="tag">Sort</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
-        <tr><td>8</td><td>Subarray Sum Equals K</td><td><span class="tag">Prefix Sum</span><span class="tag">HashMap</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
-        <tr><td>9</td><td>Longest Consecutive Sequence</td><td><span class="tag">HashSet</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
-        <tr><td>10</td><td>Rotate Array</td><td><span class="tag">In-place</span><span class="tag">Reversal</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
-        <tr><td>11</td><td>Next Permutation</td><td><span class="tag">In-place</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
-        <tr><td>12</td><td>Sort Colors</td><td><span class="tag">Dutch National Flag</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>1</td><td><a class="leetcode-link" href="https://leetcode.com/problems/two-sum/" target="_blank" rel="noopener noreferrer">Two Sum</a></td><td><span class="tag">HashMap</span></td><td><span class="topic-difficulty diff-easy">Easy</span></td></tr>
+        <tr><td>2</td><td><a class="leetcode-link" href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/" target="_blank" rel="noopener noreferrer">Best Time to Buy & Sell Stock</a></td><td><span class="tag">Greedy</span><span class="tag">Sliding Window</span></td><td><span class="topic-difficulty diff-easy">Easy</span></td></tr>
+        <tr><td>3</td><td><a class="leetcode-link" href="https://leetcode.com/problems/product-of-array-except-self/" target="_blank" rel="noopener noreferrer">Product of Array Except Self</a></td><td><span class="tag">Prefix Sum</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>4</td><td><a class="leetcode-link" href="https://leetcode.com/problems/maximum-subarray/" target="_blank" rel="noopener noreferrer">Maximum Subarray</a></td><td><span class="tag">Kadane</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>5</td><td><a class="leetcode-link" href="https://leetcode.com/problems/move-zeroes/" target="_blank" rel="noopener noreferrer">Move Zeroes</a></td><td><span class="tag">Two Pointer</span></td><td><span class="topic-difficulty diff-easy">Easy</span></td></tr>
+        <tr><td>6</td><td><a class="leetcode-link" href="https://leetcode.com/problems/container-with-most-water/" target="_blank" rel="noopener noreferrer">Container With Most Water</a></td><td><span class="tag">Two Pointer</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>7</td><td><a class="leetcode-link" href="https://leetcode.com/problems/3sum/" target="_blank" rel="noopener noreferrer">3Sum</a></td><td><span class="tag">Two Pointer</span><span class="tag">Sort</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>8</td><td><a class="leetcode-link" href="https://leetcode.com/problems/subarray-sum-equals-k/" target="_blank" rel="noopener noreferrer">Subarray Sum Equals K</a></td><td><span class="tag">Prefix Sum</span><span class="tag">HashMap</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>9</td><td><a class="leetcode-link" href="https://leetcode.com/problems/longest-consecutive-sequence/" target="_blank" rel="noopener noreferrer">Longest Consecutive Sequence</a></td><td><span class="tag">HashSet</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>10</td><td><a class="leetcode-link" href="https://leetcode.com/problems/rotate-array/" target="_blank" rel="noopener noreferrer">Rotate Array</a></td><td><span class="tag">In-place</span><span class="tag">Reversal</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>11</td><td><a class="leetcode-link" href="https://leetcode.com/problems/next-permutation/" target="_blank" rel="noopener noreferrer">Next Permutation</a></td><td><span class="tag">In-place</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>12</td><td><a class="leetcode-link" href="https://leetcode.com/problems/sort-colors/" target="_blank" rel="noopener noreferrer">Sort Colors</a></td><td><span class="tag">Dutch National Flag</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
       </tbody>
     </table>
   </div>
@@ -707,18 +727,18 @@
     <table class="resource-table">
       <thead><tr><th>#</th><th>Problem</th><th>Pattern</th><th>Difficulty</th></tr></thead>
       <tbody>
-        <tr><td>1</td><td>Valid Palindrome</td><td><span class="tag">Two Pointer</span></td><td><span class="topic-difficulty diff-easy">Easy</span></td></tr>
-        <tr><td>2</td><td>Reverse Words in a String</td><td><span class="tag">Two Pointer</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
-        <tr><td>3</td><td>Longest Substring Without Repeating Chars</td><td><span class="tag">Sliding Window</span><span class="tag">HashSet</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
-        <tr><td>4</td><td>Group Anagrams</td><td><span class="tag">Sorting</span><span class="tag">HashMap</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
-        <tr><td>5</td><td>Valid Anagram</td><td><span class="tag">Frequency Count</span></td><td><span class="topic-difficulty diff-easy">Easy</span></td></tr>
-        <tr><td>6</td><td>Find All Anagrams in a String</td><td><span class="tag">Sliding Window</span><span class="tag">HashMap</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
-        <tr><td>7</td><td>Minimum Window Substring</td><td><span class="tag">Sliding Window</span></td><td><span class="topic-difficulty diff-hard">Hard</span></td></tr>
-        <tr><td>8</td><td>String Compression</td><td><span class="tag">Two Pointer</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
-        <tr><td>9</td><td>Decode String</td><td><span class="tag">Stack</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
-        <tr><td>10</td><td>Longest Common Prefix</td><td><span class="tag">Sorting</span><span class="tag">Vertical Scan</span></td><td><span class="topic-difficulty diff-easy">Easy</span></td></tr>
-        <tr><td>11</td><td>Repeated Substring Pattern</td><td><span class="tag">String Matching</span></td><td><span class="topic-difficulty diff-easy">Easy</span></td></tr>
-        <tr><td>12</td><td>Implement strStr (KMP)</td><td><span class="tag">KMP</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>1</td><td><a class="leetcode-link" href="https://leetcode.com/problems/valid-palindrome/" target="_blank" rel="noopener noreferrer">Valid Palindrome</a></td><td><span class="tag">Two Pointer</span></td><td><span class="topic-difficulty diff-easy">Easy</span></td></tr>
+        <tr><td>2</td><td><a class="leetcode-link" href="https://leetcode.com/problems/reverse-words-in-a-string/" target="_blank" rel="noopener noreferrer">Reverse Words in a String</a></td><td><span class="tag">Two Pointer</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>3</td><td><a class="leetcode-link" href="https://leetcode.com/problems/longest-substring-without-repeating-characters/" target="_blank" rel="noopener noreferrer">Longest Substring Without Repeating Chars</a></td><td><span class="tag">Sliding Window</span><span class="tag">HashSet</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>4</td><td><a class="leetcode-link" href="https://leetcode.com/problems/group-anagrams/" target="_blank" rel="noopener noreferrer">Group Anagrams</a></td><td><span class="tag">Sorting</span><span class="tag">HashMap</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>5</td><td><a class="leetcode-link" href="https://leetcode.com/problems/valid-anagram/" target="_blank" rel="noopener noreferrer">Valid Anagram</a></td><td><span class="tag">Frequency Count</span></td><td><span class="topic-difficulty diff-easy">Easy</span></td></tr>
+        <tr><td>6</td><td><a class="leetcode-link" href="https://leetcode.com/problems/find-all-anagrams-in-a-string/" target="_blank" rel="noopener noreferrer">Find All Anagrams in a String</a></td><td><span class="tag">Sliding Window</span><span class="tag">HashMap</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>7</td><td><a class="leetcode-link" href="https://leetcode.com/problems/minimum-window-substring/" target="_blank" rel="noopener noreferrer">Minimum Window Substring</a></td><td><span class="tag">Sliding Window</span></td><td><span class="topic-difficulty diff-hard">Hard</span></td></tr>
+        <tr><td>8</td><td><a class="leetcode-link" href="https://leetcode.com/problems/string-compression/" target="_blank" rel="noopener noreferrer">String Compression</a></td><td><span class="tag">Two Pointer</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>9</td><td><a class="leetcode-link" href="https://leetcode.com/problems/decode-string/" target="_blank" rel="noopener noreferrer">Decode String</a></td><td><span class="tag">Stack</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>10</td><td><a class="leetcode-link" href="https://leetcode.com/problems/longest-common-prefix/" target="_blank" rel="noopener noreferrer">Longest Common Prefix</a></td><td><span class="tag">Sorting</span><span class="tag">Vertical Scan</span></td><td><span class="topic-difficulty diff-easy">Easy</span></td></tr>
+        <tr><td>11</td><td><a class="leetcode-link" href="https://leetcode.com/problems/repeated-substring-pattern/" target="_blank" rel="noopener noreferrer">Repeated Substring Pattern</a></td><td><span class="tag">String Matching</span></td><td><span class="topic-difficulty diff-easy">Easy</span></td></tr>
+        <tr><td>12</td><td><a class="leetcode-link" href="https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/" target="_blank" rel="noopener noreferrer">Implement strStr (KMP)</a></td><td><span class="tag">KMP</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
       </tbody>
     </table>
   </div>
@@ -782,6 +802,7 @@
         <li>Virtual functions, vtable basics</li>
         <li>Composition vs Inheritance (HAS-A vs IS-A)</li>
       </ul>
+      <a class="mcq-doc-btn" href="/#oop-q1" target="_blank" rel="noopener noreferrer">Open OOP in VishnuDocs ↗</a>
     </div>
     <div class="topic-card r1-card">
       <div class="topic-card-head">
@@ -799,6 +820,7 @@
         <li>File systems: FAT, inode, directory structure</li>
         <li>Context switching, PCB structure</li>
       </ul>
+      <a class="mcq-doc-btn" href="/#os-q1" target="_blank" rel="noopener noreferrer">Open OS in VishnuDocs ↗</a>
     </div>
     <div class="topic-card r1-card">
       <div class="topic-card-head">
@@ -816,6 +838,7 @@
         <li>NoSQL vs SQL tradeoffs</li>
         <li>CAP Theorem basics</li>
       </ul>
+      <a class="mcq-doc-btn" href="/#dbms-q1" target="_blank" rel="noopener noreferrer">Open DBMS in VishnuDocs ↗</a>
     </div>
     <div class="topic-card r1-card">
       <div class="topic-card-head">
@@ -833,6 +856,7 @@
         <li>Routing protocols: OSPF, BGP basics</li>
         <li>ARP, ICMP, DHCP</li>
       </ul>
+      <a class="mcq-doc-btn" href="/#net-q1" target="_blank" rel="noopener noreferrer">Open Networking in VishnuDocs ↗</a>
     </div>
   </div>
 
@@ -920,15 +944,15 @@
     <table class="resource-table">
       <thead><tr><th>#</th><th>Problem</th><th>Key Insight</th><th>Difficulty</th></tr></thead>
       <tbody>
-        <tr><td>1</td><td>Koko Eating Bananas</td><td>BS on speed, check if feasible in H hours</td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
-        <tr><td>2</td><td>Split Array Largest Sum</td><td>Minimize the max subarray sum → BS on answer</td><td><span class="topic-difficulty diff-hard">Hard</span></td></tr>
-        <tr><td>3</td><td>Capacity to Ship Packages in D Days</td><td>Minimize max load → classic BS on capacity</td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
-        <tr><td>4</td><td>Find Minimum in Rotated Sorted Array</td><td>Identify sorted half, eliminate half</td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
-        <tr><td>5</td><td>Search in Rotated Sorted Array</td><td>Combined rotation detection + BS</td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
-        <tr><td>6</td><td>Median of Two Sorted Arrays</td><td>BS on partition position — hard but impressive</td><td><span class="topic-difficulty diff-hard">Hard</span></td></tr>
+        <tr><td>1</td><td><a class="leetcode-link" href="https://leetcode.com/problems/koko-eating-bananas/" target="_blank" rel="noopener noreferrer">Koko Eating Bananas</a></td><td>BS on speed, check if feasible in H hours</td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>2</td><td><a class="leetcode-link" href="https://leetcode.com/problems/split-array-largest-sum/" target="_blank" rel="noopener noreferrer">Split Array Largest Sum</a></td><td>Minimize the max subarray sum → BS on answer</td><td><span class="topic-difficulty diff-hard">Hard</span></td></tr>
+        <tr><td>3</td><td><a class="leetcode-link" href="https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/" target="_blank" rel="noopener noreferrer">Capacity to Ship Packages in D Days</a></td><td>Minimize max load → classic BS on capacity</td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>4</td><td><a class="leetcode-link" href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/" target="_blank" rel="noopener noreferrer">Find Minimum in Rotated Sorted Array</a></td><td>Identify sorted half, eliminate half</td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>5</td><td><a class="leetcode-link" href="https://leetcode.com/problems/search-in-rotated-sorted-array/" target="_blank" rel="noopener noreferrer">Search in Rotated Sorted Array</a></td><td>Combined rotation detection + BS</td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>6</td><td><a class="leetcode-link" href="https://leetcode.com/problems/median-of-two-sorted-arrays/" target="_blank" rel="noopener noreferrer">Median of Two Sorted Arrays</a></td><td>BS on partition position — hard but impressive</td><td><span class="topic-difficulty diff-hard">Hard</span></td></tr>
         <tr><td>7</td><td>Aggressive Cows (SPOJ/Codeforces)</td><td>Maximize minimum distance — canonical BS on answer</td><td><span class="topic-difficulty diff-hard">Hard</span></td></tr>
-        <tr><td>8</td><td>Find Peak Element</td><td>Binary search on unsorted — eliminate half by slope</td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
-        <tr><td>9</td><td>Minimum Time to Complete Trips</td><td>Feasibility check with given time → BS on time</td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>8</td><td><a class="leetcode-link" href="https://leetcode.com/problems/find-peak-element/" target="_blank" rel="noopener noreferrer">Find Peak Element</a></td><td>Binary search on unsorted — eliminate half by slope</td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>9</td><td><a class="leetcode-link" href="https://leetcode.com/problems/minimum-time-to-complete-trips/" target="_blank" rel="noopener noreferrer">Minimum Time to Complete Trips</a></td><td>Feasibility check with given time → BS on time</td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
         <tr><td>10</td><td>Allocate Books (GFG)</td><td>Minimize max pages per student — classic BSOA</td><td><span class="topic-difficulty diff-hard">Hard</span></td></tr>
       </tbody>
     </table>
@@ -1080,6 +1104,32 @@
   </div>
 
   <div class="resource-block reveal">
+    <div class="resource-block-title">🧭 Structured Logical Reasoning Plan (Use This Weekly)</div>
+    <table class="resource-table">
+      <thead><tr><th>Track</th><th>What to master</th><th>Output you should produce</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Deductive Logic</strong></td><td>Syllogisms, implication vs equivalence, constraints elimination, contradiction method.</td><td>1-page sheet with 8 reusable templates and solved examples.</td></tr>
+        <tr><td><strong>Quant Reasoning</strong></td><td>Ratios, permutations/combinations, conditional probability, expectation shortcuts.</td><td>Solve 20 timed problems with full verbal explanation.</td></tr>
+        <tr><td><strong>Puzzle Strategy</strong></td><td>State modeling, invariants, parity arguments, greedy-vs-optimal proof style.</td><td>Explain 5 puzzles aloud in under 4 minutes each.</td></tr>
+        <tr><td><strong>Case Reasoning</strong></td><td>Break unknowns into assumptions, estimate ranges, sensitivity analysis.</td><td>2 Fermi estimations with low/base/high scenarios.</td></tr>
+      </tbody>
+    </table>
+    <div class="tip-box" style="margin-top:1rem;"><strong>Interview script:</strong> Start with assumptions, propose two approaches, compare trade-offs, then solve. This structure consistently scores higher than a raw final answer.</div>
+  </div>
+
+  <div class="resource-block reveal">
+    <div class="resource-block-title">📖 What to Read for Logical Reasoning Depth</div>
+    <table class="resource-table">
+      <thead><tr><th>Resource</th><th>Why it matters</th><th>Link</th></tr></thead>
+      <tbody>
+        <tr><td><strong>GMAT Critical Reasoning Guide</strong></td><td>Best structure for assumptions, strengthen/weaken, inference questions.</td><td><a class="resource-link" href="https://www.manhattanprep.com/gmat/blog/gmat-critical-reasoning/" target="_blank" rel="noopener noreferrer">manhattanprep.com</a></td></tr>
+        <tr><td><strong>LSAT Logical Reasoning Explanations</strong></td><td>High-quality reasoning drills that train precision under time pressure.</td><td><a class="resource-link" href="https://7sage.com/lsat/logic-reasoning/" target="_blank" rel="noopener noreferrer">7sage.com</a></td></tr>
+        <tr><td><strong>Brilliant — Logic</strong></td><td>Interactive practice for logic grids, probability, and puzzle decomposition.</td><td><a class="resource-link" href="https://brilliant.org/courses/logic-deduction/" target="_blank" rel="noopener noreferrer">brilliant.org</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="resource-block reveal">
     <div class="resource-block-title">📚 Resources — Logical Reasoning & Riddles</div>
     <table class="resource-table">
       <thead><tr><th>Resource</th><th>What to use it for</th><th>Link</th></tr></thead>
@@ -1219,6 +1269,33 @@
       <li><strong>Optimistic UI</strong>: Like/follow updates immediately on client, async confirmed by server</li>
       <li><strong>CDN caching</strong>: Profile page = highly cacheable. Cache-Control: max-age=60. Invalidate on profile update</li>
     </ul>
+  </div>
+
+  <div class="resource-block reveal">
+    <div class="resource-block-title">🧱 Advanced System Design Concepts (High Signal for Interviews)</div>
+    <table class="resource-table">
+      <thead><tr><th>Layer</th><th>Concepts to prepare deeply</th><th>Interview-ready talking points</th></tr></thead>
+      <tbody>
+        <tr><td><strong>API + Traffic</strong></td><td>Idempotency keys, retries with backoff, hedged requests, backpressure.</td><td>How you avoid duplicate writes and cascading retries during partial outages.</td></tr>
+        <tr><td><strong>Storage</strong></td><td>LSM vs B-Tree, read replicas, quorum reads/writes, tombstones, compaction.</td><td>When eventual consistency is acceptable and how to bound staleness.</td></tr>
+        <tr><td><strong>Caching</strong></td><td>Cache-aside, write-through, write-back, TTL tuning, stampede protection.</td><td>How to keep cache hit rate high while avoiding stale critical data.</td></tr>
+        <tr><td><strong>Messaging</strong></td><td>At-most/at-least/exactly-once semantics, DLQ, partition keys, consumer lag.</td><td>Designing event-driven pipelines that survive reprocessing and duplicates.</td></tr>
+        <tr><td><strong>Search + Ranking</strong></td><td>Indexing pipelines, eventual index consistency, ranking features, cold start.</td><td>How to explain relevance trade-offs and latency budgets.</td></tr>
+        <tr><td><strong>Security + Multi-tenancy</strong></td><td>Row-level isolation, tenant-aware rate limits, secrets rotation, audit logs.</td><td>How to prevent noisy-neighbor impact and data leakage across tenants.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="resource-block reveal">
+    <div class="resource-block-title">🗺️ System Design Practice Map (What to Design to Ace R3)</div>
+    <div class="topic-grid">
+      <div class="topic-card r3-card"><div class="topic-card-head"><span class="topic-icon">📰</span><span class="topic-title">News Feed</span><span class="topic-difficulty diff-hard">Hard</span></div><ul class="topic-list"><li>Fanout strategies: push, pull, hybrid</li><li>Ranking service and feature store integration</li><li>Hot key mitigation for celebrity posts</li></ul></div>
+      <div class="topic-card r3-card"><div class="topic-card-head"><span class="topic-icon">🔗</span><span class="topic-title">URL Shortener</span><span class="topic-difficulty diff-medium">Medium</span></div><ul class="topic-list"><li>ID generation: Snowflake vs hash</li><li>Read-heavy scaling and cache hierarchy</li><li>Abuse prevention + expiration</li></ul></div>
+      <div class="topic-card r3-card"><div class="topic-card-head"><span class="topic-icon">💬</span><span class="topic-title">Realtime Chat</span><span class="topic-difficulty diff-hard">Hard</span></div><ul class="topic-list"><li>WebSocket gateway scaling</li><li>Message ordering and delivery guarantees</li><li>Offline sync + unread counters</li></ul></div>
+      <div class="topic-card r3-card"><div class="topic-card-head"><span class="topic-icon">📹</span><span class="topic-title">Video Upload + Processing</span><span class="topic-difficulty diff-hard">Hard</span></div><ul class="topic-list"><li>Chunked upload and resumability</li><li>Transcoding pipeline + queueing</li><li>CDN distribution and cold regions</li></ul></div>
+      <div class="topic-card r3-card"><div class="topic-card-head"><span class="topic-icon">🔔</span><span class="topic-title">Notifications</span><span class="topic-difficulty diff-medium">Medium</span></div><ul class="topic-list"><li>Deduplication and preference filters</li><li>Priority queues and retries</li><li>User fatigue and throttling policies</li></ul></div>
+      <div class="topic-card r3-card"><div class="topic-card-head"><span class="topic-icon">📊</span><span class="topic-title">Analytics Pipeline</span><span class="topic-difficulty diff-hard">Hard</span></div><ul class="topic-list"><li>Batch vs streaming architecture</li><li>Late events and watermarking</li><li>Cost/performance trade-offs</li></ul></div>
+    </div>
   </div>
 
   <!-- SD RESOURCES -->
