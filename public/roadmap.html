@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Labs Hiring Roadmap</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #1a1a24;
+    --border: #2a2a3a;
+    --accent: #7c6af7;
+    --accent2: #f7c76a;
+    --accent3: #6af7c7;
+    --text: #e8e8f0;
+    --muted: #7070a0;
+    --r1: #7c6af7;
+    --r2: #f76a8a;
+    --r3: #6af7c7;
+    --font-mono: 'Space Mono', monospace;
+    --font-display: 'Syne', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-display);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(124,106,247,0.15) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    background: rgba(124,106,247,0.1);
+    border: 1px solid rgba(124,106,247,0.3);
+    padding: 0.35rem 1rem;
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 span.grad {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 50%, var(--accent3) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero p {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 580px;
+    margin-bottom: 3rem;
+  }
+
+  .rounds-nav {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 3rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    border: 1.5px solid transparent;
+    transition: all 0.25s ease;
+  }
+
+  .nav-pill.r1 { background: rgba(124,106,247,0.12); border-color: rgba(124,106,247,0.4); color: var(--r1); }
+  .nav-pill.r1:hover { background: rgba(124,106,247,0.22); }
+  .nav-pill.r2 { background: rgba(247,106,138,0.12); border-color: rgba(247,106,138,0.4); color: var(--r2); }
+  .nav-pill.r2:hover { background: rgba(247,106,138,0.22); }
+  .nav-pill.r3 { background: rgba(106,247,199,0.12); border-color: rgba(106,247,199,0.4); color: var(--r3); }
+  .nav-pill.r3:hover { background: rgba(106,247,199,0.22); }
+
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .r1 .dot { background: var(--r1); }
+  .r2 .dot { background: var(--r2); }
+  .r3 .dot { background: var(--r3); }
+
+  /* SECTION */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .round-badge {
+    flex-shrink: 0;
+    width: 56px; height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.8rem;
+  }
+
+  .badge-r1 { background: rgba(124,106,247,0.15); border: 1.5px solid var(--r1); color: var(--r1); }
+  .badge-r2 { background: rgba(247,106,138,0.15); border: 1.5px solid var(--r2); color: var(--r2); }
+  .badge-r3 { background: rgba(106,247,199,0.15); border: 1.5px solid var(--r3); color: var(--r3); }
+
+  .section-title {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .section-meta {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.4rem;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0 2rem;
+  }
+
+  /* TOPIC GRID */
+  .topic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .topic-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .topic-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .r1-card::before { background: linear-gradient(90deg, var(--r1), transparent); }
+  .r2-card::before { background: linear-gradient(90deg, var(--r2), transparent); }
+  .r3-card::before { background: linear-gradient(90deg, var(--r3), transparent); }
+
+  .topic-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .topic-card-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .topic-icon {
+    font-size: 1.3rem;
+  }
+
+  .topic-title {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .topic-difficulty {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2rem;
+    font-weight: 700;
+  }
+
+  .diff-easy { background: rgba(106,247,199,0.1); color: var(--accent3); border: 1px solid rgba(106,247,199,0.2); }
+  .diff-medium { background: rgba(247,199,106,0.1); color: var(--accent2); border: 1px solid rgba(247,199,106,0.2); }
+  .diff-hard { background: rgba(247,106,138,0.1); color: var(--r2); border: 1px solid rgba(247,106,138,0.2); }
+
+  .topic-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .topic-list li {
+    font-size: 0.875rem;
+    color: #b0b0cc;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    line-height: 1.5;
+  }
+
+  .topic-list li::before {
+    content: '→';
+    color: var(--muted);
+    flex-shrink: 0;
+    margin-top: 0.05em;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+  }
+
+  /* RESOURCE BLOCK */
+  .resource-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .resource-block-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .resource-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .resource-table th {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    padding: 0.5rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .resource-table td {
+    padding: 0.7rem 1rem;
+    font-size: 0.875rem;
+    border-bottom: 1px solid rgba(42,42,58,0.5);
+    vertical-align: top;
+  }
+
+  .resource-table tr:last-child td { border-bottom: none; }
+
+  .resource-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .resource-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+
+  .resource-link:hover { text-decoration: underline; }
+
+  .tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    background: var(--surface2);
+    color: var(--muted);
+    margin-right: 0.3rem;
+    margin-bottom: 0.2rem;
+  }
+
+  /* PATTERNS SECTION */
+  .pattern-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .pattern-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .pattern-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent2);
+  }
+
+  .pattern-desc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+
+  .pattern-problems {
+    font-size: 0.8rem;
+    color: #9090b8;
+  }
+
+  /* TIMELINE */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--r1), var(--r2), var(--r3));
+    border-radius: 2px;
+  }
+
+  .timeline-item {
+    position: relative;
+    padding: 0 0 2rem 2rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -5px; top: 6px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+  }
+
+  .timeline-week {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .timeline-task {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline-detail {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  /* TIP BOX */
+  .tip-box {
+    background: rgba(124,106,247,0.06);
+    border: 1px solid rgba(124,106,247,0.2);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 12px 12px 0;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+    color: #c0c0e0;
+  }
+
+  .tip-box strong { color: var(--accent); }
+
+  .warn-box {
+    background: rgba(247,199,106,0.06);
+    border: 1px solid rgba(247,199,106,0.2);
+    border-left: 3px solid var(--accent2);
+    border-radius: 0 12px 12px 0;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+    color: #c0c0e0;
+  }
+
+  .warn-box strong { color: var(--accent2); }
+
+  /* MCQ TABLE */
+  .mcq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .mcq-chip {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .mcq-chip-icon { font-size: 1rem; }
+
+  /* SYSTEM DESIGN */
+  .sd-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .sd-block h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--accent3);
+  }
+
+  .sd-checklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .sd-checklist li {
+    font-size: 0.875rem;
+    color: #b0b0cc;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .sd-checklist li::before {
+    content: '□';
+    color: var(--r3);
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+  }
+
+  /* CODE SNIPPET */
+  .code-snippet {
+    background: #0d0d14;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: #b0b0d8;
+    overflow-x: auto;
+    margin: 0.75rem 0;
+    line-height: 1.7;
+  }
+
+  .code-snippet .kw { color: #7c6af7; }
+  .code-snippet .fn { color: #f7c76a; }
+  .code-snippet .cm { color: #505070; }
+  .code-snippet .st { color: #6af7c7; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 4rem 2rem;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* SCROLL ANIMATION */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* STICKY NAV */
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,15,0.9);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    overflow-x: auto;
+  }
+
+  .sticky-nav-logo {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--accent);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .sticky-nav a {
+    font-size: 0.82rem;
+    color: var(--muted);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  .sticky-nav a:hover { color: var(--text); }
+</style>
+</head>
+<body>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav">
+  <span class="sticky-nav-logo">▸ LABS ROADMAP</span>
+  <a href="#round1">R1 · OA</a>
+  <a href="#r1-dsa">DSA — Strings & Arrays</a>
+  <a href="#r1-mcq">MCQ Prep</a>
+  <a href="#round2">R2 · Interview</a>
+  <a href="#r2-dsa">Med-Hard DSA</a>
+  <a href="#r2-logical">Logical Reasoning</a>
+  <a href="#round3">R3 · System Design</a>
+  <a href="#sd-framework">SD Framework</a>
+  <a href="#timeline">Study Plan</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">Labs Hiring · Complete Interview Roadmap</div>
+  <h1>Crack the <span class="grad">Labs</span><br>Hiring Process</h1>
+  <p>A structured, no-fluff guide covering every round — from OA to system design — with resources, patterns, and pro tips.</p>
+  <div class="rounds-nav">
+    <a href="#round1" class="nav-pill r1"><span class="dot"></span> Round 1 · OA</a>
+    <a href="#round2" class="nav-pill r2"><span class="dot"></span> Round 2 · Interview</a>
+    <a href="#round3" class="nav-pill r3"><span class="dot"></span> Round 3 · System Design</a>
+  </div>
+</section>
+
+<!-- ==================== ROUND 1 ==================== -->
+<div class="divider"></div>
+<section class="section" id="round1">
+  <div class="section-header reveal">
+    <div class="round-badge badge-r1">R1</div>
+    <div>
+      <div class="section-title">Online Assessment</div>
+      <div class="section-meta">DSA (Strings & Arrays) · MCQ from Core Concepts · Easy difficulty</div>
+    </div>
+  </div>
+
+  <!-- DSA ANCHOR -->
+  <div id="r1-dsa"></div>
+  <div class="resource-block reveal">
+    <div class="resource-block-title">📌 What to expect in DSA</div>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:1rem;">OA focuses purely on <strong style="color:var(--text)">Strings and Arrays</strong>. Questions are easy to easy-medium difficulty. Speed and correctness both matter — practice writing clean, bug-free code fast.</p>
+    <div class="tip-box"><strong>Key insight:</strong> Every array question can often be solved with sliding window, two-pointer, or prefix sums. Every string question usually involves hashing, two-pointer, or careful indexing. Know these cold.</div>
+  </div>
+
+  <h3 style="font-size:1.1rem;font-weight:700;margin:2rem 0 1rem;color:var(--muted);font-family:var(--font-mono);letter-spacing:0.05em;">CORE PATTERNS TO MASTER</h3>
+  <div class="pattern-grid reveal">
+    <div class="pattern-card">
+      <div class="pattern-name">Two Pointers</div>
+      <div class="pattern-desc">Left/right pointers converging. Handles sorted arrays, pair sums, palindrome checks, removing duplicates.</div>
+      <div class="pattern-problems">🔑 Valid Palindrome, 3Sum, Container With Most Water, Remove Duplicates</div>
+    </div>
+    <div class="pattern-card">
+      <div class="pattern-name">Sliding Window</div>
+      <div class="pattern-desc">Fixed or variable-size window over array/string. Optimal for subarray/substring problems.</div>
+      <div class="pattern-problems">🔑 Longest Substring Without Repeating, Max Sum Subarray of Size K, Minimum Window Substring</div>
+    </div>
+    <div class="pattern-card">
+      <div class="pattern-name">Prefix Sum</div>
+      <div class="pattern-desc">Precompute cumulative sums for O(1) range queries. Essential for subarray sum problems.</div>
+      <div class="pattern-problems">🔑 Subarray Sum Equals K, Product of Array Except Self, Range Sum Query</div>
+    </div>
+    <div class="pattern-card">
+      <div class="pattern-name">Frequency / Hashing</div>
+      <div class="pattern-desc">HashMap/HashSet for O(1) lookup. Group anagrams, find duplicates, intersection problems.</div>
+      <div class="pattern-problems">🔑 Group Anagrams, Two Sum, Longest Consecutive Sequence, Valid Anagram</div>
+    </div>
+    <div class="pattern-card">
+      <div class="pattern-name">Kadane's Algorithm</div>
+      <div class="pattern-desc">Maximum subarray problem. Classic DP on arrays reduced to O(n).</div>
+      <div class="pattern-problems">🔑 Maximum Subarray, Maximum Product Subarray, Circular Subarray</div>
+    </div>
+    <div class="pattern-card">
+      <div class="pattern-name">In-place Array Ops</div>
+      <div class="pattern-desc">Rotate, reverse, move elements — O(1) space. Crucial for OA where edge cases trip you up.</div>
+      <div class="pattern-problems">🔑 Rotate Array, Move Zeroes, Next Permutation, Sort Colors</div>
+    </div>
+    <div class="pattern-card">
+      <div class="pattern-name">String Matching & Parsing</div>
+      <div class="pattern-desc">KMP, Rabin-Karp for substring search. Also covers string builder, char manipulation.</div>
+      <div class="pattern-problems">🔑 Find All Anagrams in String, Repeated Substring Pattern, String to Integer</div>
+    </div>
+    <div class="pattern-card">
+      <div class="pattern-name">Stack-based String Ops</div>
+      <div class="pattern-desc">Monotonic stacks, bracket matching, expression evaluation using string iteration.</div>
+      <div class="pattern-problems">🔑 Valid Parentheses, Decode String, Largest Rectangle in Histogram (via string parsing)</div>
+    </div>
+  </div>
+
+  <!-- PROBLEM LIST -->
+  <div class="resource-block reveal">
+    <div class="resource-block-title">🎯 Must-Solve LeetCode Problems (Arrays)</div>
+    <table class="resource-table">
+      <thead><tr><th>#</th><th>Problem</th><th>Pattern</th><th>Difficulty</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Two Sum</td><td><span class="tag">HashMap</span></td><td><span class="topic-difficulty diff-easy">Easy</span></td></tr>
+        <tr><td>2</td><td>Best Time to Buy & Sell Stock</td><td><span class="tag">Greedy</span><span class="tag">Sliding Window</span></td><td><span class="topic-difficulty diff-easy">Easy</span></td></tr>
+        <tr><td>3</td><td>Product of Array Except Self</td><td><span class="tag">Prefix Sum</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>4</td><td>Maximum Subarray</td><td><span class="tag">Kadane</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>5</td><td>Move Zeroes</td><td><span class="tag">Two Pointer</span></td><td><span class="topic-difficulty diff-easy">Easy</span></td></tr>
+        <tr><td>6</td><td>Container With Most Water</td><td><span class="tag">Two Pointer</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>7</td><td>3Sum</td><td><span class="tag">Two Pointer</span><span class="tag">Sort</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>8</td><td>Subarray Sum Equals K</td><td><span class="tag">Prefix Sum</span><span class="tag">HashMap</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>9</td><td>Longest Consecutive Sequence</td><td><span class="tag">HashSet</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>10</td><td>Rotate Array</td><td><span class="tag">In-place</span><span class="tag">Reversal</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>11</td><td>Next Permutation</td><td><span class="tag">In-place</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>12</td><td>Sort Colors</td><td><span class="tag">Dutch National Flag</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="resource-block reveal">
+    <div class="resource-block-title">🎯 Must-Solve LeetCode Problems (Strings)</div>
+    <table class="resource-table">
+      <thead><tr><th>#</th><th>Problem</th><th>Pattern</th><th>Difficulty</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Valid Palindrome</td><td><span class="tag">Two Pointer</span></td><td><span class="topic-difficulty diff-easy">Easy</span></td></tr>
+        <tr><td>2</td><td>Reverse Words in a String</td><td><span class="tag">Two Pointer</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>3</td><td>Longest Substring Without Repeating Chars</td><td><span class="tag">Sliding Window</span><span class="tag">HashSet</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>4</td><td>Group Anagrams</td><td><span class="tag">Sorting</span><span class="tag">HashMap</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>5</td><td>Valid Anagram</td><td><span class="tag">Frequency Count</span></td><td><span class="topic-difficulty diff-easy">Easy</span></td></tr>
+        <tr><td>6</td><td>Find All Anagrams in a String</td><td><span class="tag">Sliding Window</span><span class="tag">HashMap</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>7</td><td>Minimum Window Substring</td><td><span class="tag">Sliding Window</span></td><td><span class="topic-difficulty diff-hard">Hard</span></td></tr>
+        <tr><td>8</td><td>String Compression</td><td><span class="tag">Two Pointer</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>9</td><td>Decode String</td><td><span class="tag">Stack</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>10</td><td>Longest Common Prefix</td><td><span class="tag">Sorting</span><span class="tag">Vertical Scan</span></td><td><span class="topic-difficulty diff-easy">Easy</span></td></tr>
+        <tr><td>11</td><td>Repeated Substring Pattern</td><td><span class="tag">String Matching</span></td><td><span class="topic-difficulty diff-easy">Easy</span></td></tr>
+        <tr><td>12</td><td>Implement strStr (KMP)</td><td><span class="tag">KMP</span></td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- RESOURCES FOR DSA -->
+  <div class="resource-block reveal">
+    <div class="resource-block-title">📚 Best Resources — Strings & Arrays DSA</div>
+    <table class="resource-table">
+      <thead><tr><th>Resource</th><th>What to use it for</th><th>Link</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>NeetCode 150</strong></td>
+          <td>Best curated list. Do the Arrays & Strings section first. Video explanations for every problem.</td>
+          <td><a class="resource-link" href="https://neetcode.io/practice" target="_blank">neetcode.io/practice</a></td>
+        </tr>
+        <tr>
+          <td><strong>LeetCode Explore — Arrays 101</strong></td>
+          <td>Structured course on arrays with built-in problems. Great for understanding edge cases.</td>
+          <td><a class="resource-link" href="https://leetcode.com/explore/learn/card/array-and-string/" target="_blank">leetcode.com/explore</a></td>
+        </tr>
+        <tr>
+          <td><strong>Striver's A2Z DSA Sheet</strong></td>
+          <td>Comprehensive sheet by topic. Follow the Strings + Arrays section with video solutions.</td>
+          <td><a class="resource-link" href="https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2/" target="_blank">takeuforward.org</a></td>
+        </tr>
+        <tr>
+          <td><strong>CP-Algorithms</strong></td>
+          <td>In-depth explanation of KMP, Z-function, Two Pointers, and Prefix Sums with proofs.</td>
+          <td><a class="resource-link" href="https://cp-algorithms.com/" target="_blank">cp-algorithms.com</a></td>
+        </tr>
+        <tr>
+          <td><strong>Sliding Window Patterns (Medium)</strong></td>
+          <td>The definitive article on all sliding window variants. Read and implement every type.</td>
+          <td><a class="resource-link" href="https://medium.com/leetcode-patterns/leetcode-pattern-2-sliding-windows-for-strings-e19af105316b" target="_blank">medium.com</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- MCQ -->
+  <div id="r1-mcq"></div>
+  <h3 style="font-size:1.1rem;font-weight:700;margin:3rem 0 1rem;color:var(--muted);font-family:var(--font-mono);letter-spacing:0.05em;">MCQ — CORE CONCEPTS OVERVIEW</h3>
+
+  <div class="warn-box"><strong>Note:</strong> You mentioned you'll refer to your own cheat sheets for OOP, OS, DBMS, and CN. This section gives you a quick map of what topics to cover within each — use it to ensure your cheat sheet is comprehensive.</div>
+
+  <div class="topic-grid reveal">
+    <div class="topic-card r1-card">
+      <div class="topic-card-head">
+        <span class="topic-icon">🧬</span>
+        <span class="topic-title">OOP Concepts</span>
+        <span class="topic-difficulty diff-easy">Easy MCQ</span>
+      </div>
+      <ul class="topic-list">
+        <li>4 Pillars: Encapsulation, Abstraction, Inheritance, Polymorphism</li>
+        <li>Constructor types, destructor, copy constructor</li>
+        <li>Method overloading vs overriding</li>
+        <li>Abstract class vs Interface</li>
+        <li>Static vs instance members</li>
+        <li>Access modifiers (public/private/protected)</li>
+        <li>this keyword, super/base class calls</li>
+        <li>Virtual functions, vtable basics</li>
+        <li>Composition vs Inheritance (HAS-A vs IS-A)</li>
+      </ul>
+    </div>
+    <div class="topic-card r1-card">
+      <div class="topic-card-head">
+        <span class="topic-icon">⚙️</span>
+        <span class="topic-title">Operating Systems</span>
+        <span class="topic-difficulty diff-easy">Easy MCQ</span>
+      </div>
+      <ul class="topic-list">
+        <li>Process vs Thread — differences, states</li>
+        <li>CPU Scheduling: FCFS, SJF, Round Robin, Priority</li>
+        <li>Deadlock: Conditions, Prevention, Avoidance (Banker's)</li>
+        <li>Memory: Paging, Segmentation, Virtual Memory</li>
+        <li>Page Replacement: FIFO, LRU, Optimal</li>
+        <li>Semaphores, Mutex, Monitors</li>
+        <li>File systems: FAT, inode, directory structure</li>
+        <li>Context switching, PCB structure</li>
+      </ul>
+    </div>
+    <div class="topic-card r1-card">
+      <div class="topic-card-head">
+        <span class="topic-icon">🗄️</span>
+        <span class="topic-title">DBMS</span>
+        <span class="topic-difficulty diff-easy">Easy MCQ</span>
+      </div>
+      <ul class="topic-list">
+        <li>ACID properties explained simply</li>
+        <li>ER Diagrams, Keys (primary, foreign, candidate)</li>
+        <li>SQL: JOINs, GROUP BY, HAVING, subqueries</li>
+        <li>Normalization: 1NF, 2NF, 3NF, BCNF</li>
+        <li>Indexing: B-tree, Hash index</li>
+        <li>Transactions, Concurrency control</li>
+        <li>NoSQL vs SQL tradeoffs</li>
+        <li>CAP Theorem basics</li>
+      </ul>
+    </div>
+    <div class="topic-card r1-card">
+      <div class="topic-card-head">
+        <span class="topic-icon">🌐</span>
+        <span class="topic-title">Computer Networks</span>
+        <span class="topic-difficulty diff-easy">Easy MCQ</span>
+      </div>
+      <ul class="topic-list">
+        <li>OSI Model — all 7 layers and their roles</li>
+        <li>TCP vs UDP — when to use each</li>
+        <li>TCP 3-way handshake, 4-way termination</li>
+        <li>HTTP vs HTTPS, TLS/SSL basics</li>
+        <li>DNS resolution process</li>
+        <li>IP addressing, subnetting, NAT</li>
+        <li>Routing protocols: OSPF, BGP basics</li>
+        <li>ARP, ICMP, DHCP</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="resource-block reveal">
+    <div class="resource-block-title">🧠 MCQ Practice Resources</div>
+    <table class="resource-table">
+      <thead><tr><th>Platform</th><th>Use for</th><th>Link</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>GeeksForGeeks — Quiz Section</strong></td>
+          <td>Topic-wise MCQs for all 4 subjects. Best mock for OA format.</td>
+          <td><a class="resource-link" href="https://www.geeksforgeeks.org/quiz-corner-gq/" target="_blank">gfg quiz corner</a></td>
+        </tr>
+        <tr>
+          <td><strong>IndiaBix — CS MCQs</strong></td>
+          <td>Large bank of OS, DBMS, CN questions in exam format.</td>
+          <td><a class="resource-link" href="https://www.indiabix.com/computer-science/questions-and-answers/" target="_blank">indiabix.com</a></td>
+        </tr>
+        <tr>
+          <td><strong>Sanfoundry</strong></td>
+          <td>1000+ questions per topic. Good for exhaustive coverage.</td>
+          <td><a class="resource-link" href="https://www.sanfoundry.com/computer-science-questions-answers/" target="_blank">sanfoundry.com</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ==================== ROUND 2 ==================== -->
+<div class="divider"></div>
+<section class="section" id="round2">
+  <div class="section-header reveal">
+    <div class="round-badge badge-r2">R2</div>
+    <div>
+      <div class="section-title">Technical Interview</div>
+      <div class="section-meta">DSA Medium–Hard · Resume Skills · Core Concepts · Logical Reasoning & Riddles</div>
+    </div>
+  </div>
+
+  <div id="r2-dsa"></div>
+  <div class="resource-block reveal">
+    <div class="resource-block-title">📌 Round 2 DSA Focus Areas</div>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:1rem;">Two major areas: <strong style="color:var(--text)">Advanced String Techniques</strong> and <strong style="color:var(--text)">Binary Search on Answers</strong> — a common but underrated pattern where the answer itself has a monotonic property you can binary search over.</p>
+    <div class="tip-box"><strong>Pro Tip:</strong> "Binary Search on Answers" problems are identified by the phrase "minimize the maximum" or "maximize the minimum" — as soon as you see this, think binary search on the answer space, not the array.</div>
+  </div>
+
+  <div class="topic-grid reveal">
+    <div class="topic-card r2-card">
+      <div class="topic-card-head">
+        <span class="topic-icon">🔤</span>
+        <span class="topic-title">Advanced Strings</span>
+        <span class="topic-difficulty diff-hard">Hard</span>
+      </div>
+      <ul class="topic-list">
+        <li>KMP algorithm — failure function, O(n+m) search</li>
+        <li>Z-algorithm — string matching, period finding</li>
+        <li>Rabin-Karp — rolling hash for multiple pattern matching</li>
+        <li>Trie data structure — autocomplete, prefix search</li>
+        <li>Manacher's algorithm — all palindromic substrings in O(n)</li>
+        <li>Suffix Array — advanced, good to know conceptually</li>
+        <li>String hashing — polynomial hashing, collision handling</li>
+      </ul>
+    </div>
+    <div class="topic-card r2-card">
+      <div class="topic-card-head">
+        <span class="topic-icon">🔍</span>
+        <span class="topic-title">Binary Search on Answers</span>
+        <span class="topic-difficulty diff-hard">Hard</span>
+      </div>
+      <ul class="topic-list">
+        <li>Classic BS on sorted arrays — lo/hi/mid template</li>
+        <li>BS on answer: "Can we achieve X with K resources?"</li>
+        <li>Minimize maximum — split array largest sum</li>
+        <li>Maximize minimum — aggressive cows, EKO</li>
+        <li>Rotated sorted array — find pivot, search variant</li>
+        <li>BS on floating point — nth root, square root</li>
+        <li>Capacity to Ship Packages Within D Days</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- BS PROBLEMS -->
+  <div class="resource-block reveal">
+    <div class="resource-block-title">🎯 Binary Search on Answers — Problem List</div>
+    <table class="resource-table">
+      <thead><tr><th>#</th><th>Problem</th><th>Key Insight</th><th>Difficulty</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Koko Eating Bananas</td><td>BS on speed, check if feasible in H hours</td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>2</td><td>Split Array Largest Sum</td><td>Minimize the max subarray sum → BS on answer</td><td><span class="topic-difficulty diff-hard">Hard</span></td></tr>
+        <tr><td>3</td><td>Capacity to Ship Packages in D Days</td><td>Minimize max load → classic BS on capacity</td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>4</td><td>Find Minimum in Rotated Sorted Array</td><td>Identify sorted half, eliminate half</td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>5</td><td>Search in Rotated Sorted Array</td><td>Combined rotation detection + BS</td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>6</td><td>Median of Two Sorted Arrays</td><td>BS on partition position — hard but impressive</td><td><span class="topic-difficulty diff-hard">Hard</span></td></tr>
+        <tr><td>7</td><td>Aggressive Cows (SPOJ/Codeforces)</td><td>Maximize minimum distance — canonical BS on answer</td><td><span class="topic-difficulty diff-hard">Hard</span></td></tr>
+        <tr><td>8</td><td>Find Peak Element</td><td>Binary search on unsorted — eliminate half by slope</td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>9</td><td>Minimum Time to Complete Trips</td><td>Feasibility check with given time → BS on time</td><td><span class="topic-difficulty diff-medium">Medium</span></td></tr>
+        <tr><td>10</td><td>Allocate Books (GFG)</td><td>Minimize max pages per student — classic BSOA</td><td><span class="topic-difficulty diff-hard">Hard</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- BS Template -->
+  <div class="resource-block reveal">
+    <div class="resource-block-title">💡 Binary Search on Answers — Code Template</div>
+    <div class="code-snippet">
+<span class="cm">// Template: Binary Search on the Answer Space</span>
+<span class="kw">def</span> <span class="fn">solve</span>(nums, k):
+    lo, hi = <span class="fn">min</span>(nums), <span class="fn">sum</span>(nums)  <span class="cm"># answer range</span>
+    
+    <span class="kw">def</span> <span class="fn">feasible</span>(mid):
+        <span class="cm"># Can we achieve "mid" as the answer?</span>
+        count, current = <span class="st">1</span>, <span class="st">0</span>
+        <span class="kw">for</span> num <span class="kw">in</span> nums:
+            current += num
+            <span class="kw">if</span> current > mid:
+                count += <span class="st">1</span>
+                current = num
+        <span class="kw">return</span> count <= k
+    
+    <span class="kw">while</span> lo < hi:
+        mid = (lo + hi) // <span class="st">2</span>
+        <span class="kw">if</span> <span class="fn">feasible</span>(mid):
+            hi = mid         <span class="cm"># try smaller</span>
+        <span class="kw">else</span>:
+            lo = mid + <span class="st">1</span>   <span class="cm"># need larger</span>
+    <span class="kw">return</span> lo
+    </div>
+  </div>
+
+  <!-- RESOURCES FOR R2 DSA -->
+  <div class="resource-block reveal">
+    <div class="resource-block-title">📚 Resources — Medium/Hard DSA</div>
+    <table class="resource-table">
+      <thead><tr><th>Resource</th><th>What to use it for</th><th>Link</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Striver's Binary Search Playlist</strong></td>
+          <td>20+ videos covering every BS variant including BS on answers. Best structured resource on this topic.</td>
+          <td><a class="resource-link" href="https://takeuforward.org/data-structure/binary-search-series-by-striver/" target="_blank">takeuforward.org</a></td>
+        </tr>
+        <tr>
+          <td><strong>NeetCode Advanced Strings Playlist</strong></td>
+          <td>KMP, Trie, sliding window hard variants — all explained visually.</td>
+          <td><a class="resource-link" href="https://neetcode.io/roadmap" target="_blank">neetcode.io/roadmap</a></td>
+        </tr>
+        <tr>
+          <td><strong>Algorithms for Competitive Programming (Strings)</strong></td>
+          <td>Deep dives into KMP, Z-function, Suffix Arrays with complexity proofs.</td>
+          <td><a class="resource-link" href="https://cp-algorithms.com/string/prefix-function.html" target="_blank">cp-algorithms.com</a></td>
+        </tr>
+        <tr>
+          <td><strong>CSES Problem Set — Sorting & Searching</strong></td>
+          <td>World-class problem set. The Sorting & Searching section has ideal BS on answer problems.</td>
+          <td><a class="resource-link" href="https://cses.fi/problemset/list/" target="_blank">cses.fi</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- LOGICAL REASONING -->
+  <div id="r2-logical"></div>
+  <h3 style="font-size:1.1rem;font-weight:700;margin:3rem 0 1rem;color:var(--muted);font-family:var(--font-mono);letter-spacing:0.05em;">LOGICAL REASONING & RIDDLES — THEY CARE HOW YOU THINK</h3>
+
+  <div class="warn-box"><strong>Critical insight:</strong> These questions are not about the answer — they're about your thinking process. Talk out loud. State assumptions. Narrow the solution space step by step. An elegant, methodical wrong answer beats a lucky correct one.</div>
+
+  <div class="topic-grid reveal">
+    <div class="topic-card r2-card">
+      <div class="topic-card-head">
+        <span class="topic-icon">⚖️</span>
+        <span class="topic-title">Classic Weighing / Measurement</span>
+        <span class="topic-difficulty diff-hard">Hard</span>
+      </div>
+      <ul class="topic-list">
+        <li>Find odd ball in N with a balance scale in minimum weighings</li>
+        <li>Measure specific volume using oddly-sized containers</li>
+        <li>Weigh 9 balls, one heavier — minimum weighings needed?</li>
+        <li><em>Key technique:</em> divide into thirds, not halves</li>
+      </ul>
+    </div>
+    <div class="topic-card r2-card">
+      <div class="topic-card-head">
+        <span class="topic-icon">💡</span>
+        <span class="topic-title">Light Bulb / Switch Puzzles</span>
+        <span class="topic-difficulty diff-medium">Medium</span>
+      </div>
+      <ul class="topic-list">
+        <li>3 switches, 1 bulb in another room — find which switch</li>
+        <li>Turn on switch 1 for 5 mins, off, turn on switch 2, enter room</li>
+        <li><em>Key insight:</em> Heat = third state beyond on/off</li>
+        <li>Generalizes to "use side effects as information"</li>
+      </ul>
+    </div>
+    <div class="topic-card r2-card">
+      <div class="topic-card-head">
+        <span class="topic-icon">🏃</span>
+        <span class="topic-title">Crossing the Bridge Problems</span>
+        <span class="topic-difficulty diff-medium">Medium</span>
+      </div>
+      <ul class="topic-list">
+        <li>4 people, torch, bridge at night — minimize time</li>
+        <li>Always send 2 fastest together, return 1 fastest alone</li>
+        <li>Key: the bottleneck is moving the slowest people</li>
+        <li>Practice with 1,2,5,10 and 1,2,7,10 variants</li>
+      </ul>
+    </div>
+    <div class="topic-card r2-card">
+      <div class="topic-card-head">
+        <span class="topic-icon">📊</span>
+        <span class="topic-title">Probability & Expectation</span>
+        <span class="topic-difficulty diff-hard">Hard</span>
+      </div>
+      <ul class="topic-list">
+        <li>Expected number of coin flips to get HH vs HT</li>
+        <li>Gambler's ruin, secretary problem overview</li>
+        <li>Birthday paradox — understand intuitively</li>
+        <li>Monty Hall problem — Bayesian update logic</li>
+      </ul>
+    </div>
+    <div class="topic-card r2-card">
+      <div class="topic-card-head">
+        <span class="topic-icon">🧩</span>
+        <span class="topic-title">Logic / Truth Teller Puzzles</span>
+        <span class="topic-difficulty diff-medium">Medium</span>
+      </div>
+      <ul class="topic-list">
+        <li>Knights and Knaves — truth tellers and liars</li>
+        <li>"What would the other person say?" meta-question trick</li>
+        <li>3-god problem (Random, True, False)</li>
+        <li>Blue eyes island logic puzzle — common knowledge</li>
+      </ul>
+    </div>
+    <div class="topic-card r2-card">
+      <div class="topic-card-head">
+        <span class="topic-icon">🎭</span>
+        <span class="topic-title">Fermi Estimation</span>
+        <span class="topic-difficulty diff-easy">Easy</span>
+      </div>
+      <ul class="topic-list">
+        <li>"How many golf balls fit in a school bus?" — structure your approach</li>
+        <li>Break into: volume ÷ ball volume × packing factor</li>
+        <li>Always start with a known anchor fact</li>
+        <li>Practice: piano tuners in NYC, fuel stations in India</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="resource-block reveal">
+    <div class="resource-block-title">📚 Resources — Logical Reasoning & Riddles</div>
+    <table class="resource-table">
+      <thead><tr><th>Resource</th><th>What to use it for</th><th>Link</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Brainteasers — GeeksForGeeks</strong></td>
+          <td>200+ classic interview puzzles with solutions. Sort by difficulty.</td>
+          <td><a class="resource-link" href="https://www.geeksforgeeks.org/puzzles/" target="_blank">gfg/puzzles</a></td>
+        </tr>
+        <tr>
+          <td><strong>50 Challenging Problems in Probability (Mosteller)</strong></td>
+          <td>Free PDF. Classic probability puzzles that come up in quant and tech interviews.</td>
+          <td><a class="resource-link" href="https://www.math.ucdavis.edu/~gravner/MAT135A/resources/chpr.pdf" target="_blank">PDF — Mosteller</a></td>
+        </tr>
+        <tr>
+          <td><strong>Glassdoor Interview Puzzles</strong></td>
+          <td>Company-specific puzzles from Labs and similar companies. Real examples.</td>
+          <td><a class="resource-link" href="https://www.glassdoor.com/Interview/puzzle-interview-questions-SRCH_KT0,6.htm" target="_blank">glassdoor.com</a></td>
+        </tr>
+        <tr>
+          <td><strong>Art of Problem Solving Wiki</strong></td>
+          <td>Combinatorics and logic puzzles with editorial solutions. Great for depth.</td>
+          <td><a class="resource-link" href="https://artofproblemsolving.com/wiki/" target="_blank">artofproblemsolving.com</a></td>
+        </tr>
+        <tr>
+          <td><strong>Thinking in Bets — Annie Duke</strong></td>
+          <td>Great mental model for probabilistic thinking. Not a problem book, but builds the right mindset.</td>
+          <td><span class="tag">Book</span> Available on Amazon</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- RESUME SKILLS -->
+  <div class="resource-block reveal">
+    <div class="resource-block-title">📋 Preparing for Resume Skill Questions</div>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:1.25rem;">Every item on your resume is fair game. For each skill/technology you list, prepare answers to these questions:</p>
+    <div class="sd-checklist" style="list-style:none;display:flex;flex-direction:column;gap:0.6rem;">
+      <li style="display:flex;gap:0.6rem;font-size:0.875rem;color:#b0b0cc;align-items:flex-start;"><span style="color:var(--r2);flex-shrink:0;font-family:var(--font-mono);">?</span> What problem does this technology solve? Why did you choose it over alternatives?</li>
+      <li style="display:flex;gap:0.6rem;font-size:0.875rem;color:#b0b0cc;align-items:flex-start;"><span style="color:var(--r2);flex-shrink:0;font-family:var(--font-mono);">?</span> What are its core abstractions / primitives? How does it work under the hood?</li>
+      <li style="display:flex;gap:0.6rem;font-size:0.875rem;color:#b0b0cc;align-items:flex-start;"><span style="color:var(--r2);flex-shrink:0;font-family:var(--font-mono);">?</span> What were the hardest bugs or scaling issues you hit while using it?</li>
+      <li style="display:flex;gap:0.6rem;font-size:0.875rem;color:#b0b0cc;align-items:flex-start;"><span style="color:var(--r2);flex-shrink:0;font-family:var(--font-mono);">?</span> What would you do differently if you rebuilt this from scratch?</li>
+      <li style="display:flex;gap:0.6rem;font-size:0.875rem;color:#b0b0cc;align-items:flex-start;"><span style="color:var(--r2);flex-shrink:0;font-family:var(--font-mono);">?</span> What is it bad at? What are its failure modes?</li>
+    </div>
+    <div class="tip-box" style="margin-top:1.25rem;"><strong>Tip:</strong> Never put anything on your resume you can't go 30 minutes deep on. Remove or downgrade items you've only used superficially.</div>
+  </div>
+</section>
+
+<!-- ==================== ROUND 3 ==================== -->
+<div class="divider"></div>
+<section class="section" id="round3">
+  <div class="section-header reveal">
+    <div class="round-badge badge-r3">R3</div>
+    <div>
+      <div class="section-title">System Design & Projects</div>
+      <div class="section-meta">System Design (45 min) · Deep Dive on Projects & Internships (45 min) · 1hr 30min total</div>
+    </div>
+  </div>
+
+  <div id="sd-framework"></div>
+  <div class="resource-block reveal">
+    <div class="resource-block-title">🏗️ System Design Framework — The 45-Min Template</div>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:1.25rem;">They asked you to design Instagram user page. Use this exact framework for any system design question.</p>
+  </div>
+
+  <div class="topic-grid reveal">
+    <div class="topic-card r3-card">
+      <div class="topic-card-head"><span class="topic-icon">1️⃣</span><span class="topic-title">Clarify Requirements (5 min)</span></div>
+      <ul class="topic-list">
+        <li>Functional: What features exactly? (post feed, stories, followers, DMs?)</li>
+        <li>Non-functional: Scale? (100M users, 10M DAU) Latency? Consistency?</li>
+        <li>Out of scope: Clearly state what you're NOT designing</li>
+        <li>Read/write ratio — read-heavy (like social feeds) changes everything</li>
+      </ul>
+    </div>
+    <div class="topic-card r3-card">
+      <div class="topic-card-head"><span class="topic-icon">2️⃣</span><span class="topic-title">Capacity Estimation (5 min)</span></div>
+      <ul class="topic-list">
+        <li>DAU × requests/day = total QPS</li>
+        <li>Storage per user × total users = total storage</li>
+        <li>Read QPS vs Write QPS (social: ~100:1)</li>
+        <li>Bandwidth: image size × views/day</li>
+      </ul>
+    </div>
+    <div class="topic-card r3-card">
+      <div class="topic-card-head"><span class="topic-icon">3️⃣</span><span class="topic-title">High-Level Design (15 min)</span></div>
+      <ul class="topic-list">
+        <li>Client → CDN → Load Balancer → API Gateway</li>
+        <li>Microservices: User service, Feed service, Media service</li>
+        <li>Database choice: SQL for user data, NoSQL for feeds</li>
+        <li>Object store (S3) for images/videos</li>
+        <li>Message queue for async tasks (post processing, notifications)</li>
+      </ul>
+    </div>
+    <div class="topic-card r3-card">
+      <div class="topic-card-head"><span class="topic-icon">4️⃣</span><span class="topic-title">Data Model & APIs (10 min)</span></div>
+      <ul class="topic-list">
+        <li>Define key tables/schemas: users, posts, follows, likes</li>
+        <li>REST API endpoints for core features</li>
+        <li>Pagination strategy: cursor-based vs offset</li>
+        <li>Cache what you read most (user profiles, popular posts)</li>
+      </ul>
+    </div>
+    <div class="topic-card r3-card">
+      <div class="topic-card-head"><span class="topic-icon">5️⃣</span><span class="topic-title">Deep Dive: Bottlenecks (10 min)</span></div>
+      <ul class="topic-list">
+        <li>Feed generation: pull vs push vs hybrid model</li>
+        <li>Hot users (celebrities) — don't push to 10M followers on post</li>
+        <li>Media upload: presigned URLs, async processing pipeline</li>
+        <li>Global distribution: CDN, geo-replicated databases</li>
+      </ul>
+    </div>
+    <div class="topic-card r3-card">
+      <div class="topic-card-head"><span class="topic-icon">6️⃣</span><span class="topic-title">Reliability & Scale</span></div>
+      <ul class="topic-list">
+        <li>Database replication (master-slave) for read scaling</li>
+        <li>Sharding strategy: by user_id hash</li>
+        <li>Circuit breaker, rate limiting, bulkhead patterns</li>
+        <li>Monitoring: metrics, traces, alerting</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- INSTAGRAM USER PAGE DEEP DIVE -->
+  <div class="sd-block reveal">
+    <h4>📸 Instagram User Page — Full Design Breakdown</h4>
+    <p style="font-size:0.875rem;color:var(--muted);margin-bottom:1.25rem;">This is specifically what they asked you. Know this cold. Every component below is a potential follow-up question.</p>
+    <ul class="sd-checklist">
+      <li><strong>Profile data</strong>: Users table (user_id, username, bio, avatar_url, follower_count) — store in PostgreSQL, cache in Redis</li>
+      <li><strong>Avatar images</strong>: Stored in S3/GCS, served via CDN (CloudFront). Thumbnail generation with Lambda on upload</li>
+      <li><strong>Post grid</strong>: posts table (post_id, user_id, media_url, caption, created_at). Indexed by (user_id, created_at DESC)</li>
+      <li><strong>Follower/Following counts</strong>: Maintain counters in Redis (fast reads). Async sync to DB. Problem: counter inconsistency during failures</li>
+      <li><strong>Follow relationship</strong>: follows table (follower_id, followee_id, created_at). Index on both columns for bidirectional queries</li>
+      <li><strong>Story highlights</strong>: highlight_reels table with ordered story references. Short TTL on actual story media</li>
+      <li><strong>Privacy settings</strong>: Private accounts — every data read goes through a permission check. Cache permissions per (viewer, owner) pair</li>
+      <li><strong>Infinite scroll for posts</strong>: Cursor-based pagination. cursor = (last_seen_post_id). Avoids offset degradation at scale</li>
+      <li><strong>Optimistic UI</strong>: Like/follow updates immediately on client, async confirmed by server</li>
+      <li><strong>CDN caching</strong>: Profile page = highly cacheable. Cache-Control: max-age=60. Invalidate on profile update</li>
+    </ul>
+  </div>
+
+  <!-- SD RESOURCES -->
+  <div class="resource-block reveal">
+    <div class="resource-block-title">📚 System Design — Resources to Master</div>
+    <table class="resource-table">
+      <thead><tr><th>Resource</th><th>What you get</th><th>Link</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Designing Data-Intensive Applications (DDIA)</strong></td>
+          <td>The single best book on system design. Read Ch 1-6 minimum. Covers replication, partitioning, distributed systems foundations. Non-negotiable.</td>
+          <td><span class="tag">Book</span> <a class="resource-link" href="https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/" target="_blank">O'Reilly</a></td>
+        </tr>
+        <tr>
+          <td><strong>System Design Primer (GitHub)</strong></td>
+          <td>Free, 40k⭐ GitHub repo. Covers every building block: CDN, load balancers, caches, databases, message queues. Best free resource available.</td>
+          <td><a class="resource-link" href="https://github.com/donnemartin/system-design-primer" target="_blank">github/donnemartin</a></td>
+        </tr>
+        <tr>
+          <td><strong>ByteByteGo (Alex Xu)</strong></td>
+          <td>Visual system design newsletter + YouTube. Each post designs a real system (Instagram, YouTube, Uber). Visual diagrams you can reproduce.</td>
+          <td><a class="resource-link" href="https://bytebytego.com/" target="_blank">bytebytego.com</a></td>
+        </tr>
+        <tr>
+          <td><strong>Grokking System Design (Educative)</strong></td>
+          <td>Paid but structured course. 15+ real system designs with step-by-step process. Best for interview preparation format.</td>
+          <td><a class="resource-link" href="https://www.educative.io/courses/grokking-the-system-design-interview" target="_blank">educative.io</a></td>
+        </tr>
+        <tr>
+          <td><strong>High Scalability Blog</strong></td>
+          <td>Real architectures from YouTube, Twitter, WhatsApp. How real companies actually solved these problems at scale.</td>
+          <td><a class="resource-link" href="http://highscalability.com/" target="_blank">highscalability.com</a></td>
+        </tr>
+        <tr>
+          <td><strong>Engineering Blogs</strong></td>
+          <td>Meta Engineering, Netflix TechBlog, Uber Engineering — read 2-3 posts per company to understand real tradeoffs.</td>
+          <td><a class="resource-link" href="https://engineering.fb.com/" target="_blank">engineering.fb.com</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- KEY SD CONCEPTS -->
+  <div class="resource-block reveal">
+    <div class="resource-block-title">⚡ Key System Design Building Blocks — Know All Of These</div>
+    <div class="mcq-grid" style="gap:0.6rem;">
+      <div class="mcq-chip"><span class="mcq-chip-icon">🔀</span> Load Balancer (L4 vs L7)</div>
+      <div class="mcq-chip"><span class="mcq-chip-icon">🗃️</span> SQL vs NoSQL tradeoffs</div>
+      <div class="mcq-chip"><span class="mcq-chip-icon">⚡</span> Redis — caching patterns</div>
+      <div class="mcq-chip"><span class="mcq-chip-icon">🌐</span> CDN — edge caching</div>
+      <div class="mcq-chip"><span class="mcq-chip-icon">📨</span> Message Queues (Kafka/SQS)</div>
+      <div class="mcq-chip"><span class="mcq-chip-icon">🔑</span> Consistent Hashing</div>
+      <div class="mcq-chip"><span class="mcq-chip-icon">📦</span> Database Sharding</div>
+      <div class="mcq-chip"><span class="mcq-chip-icon">🔁</span> Replication strategies</div>
+      <div class="mcq-chip"><span class="mcq-chip-icon">🧩</span> Microservices vs Monolith</div>
+      <div class="mcq-chip"><span class="mcq-chip-icon">🔐</span> Auth — JWT / OAuth2</div>
+      <div class="mcq-chip"><span class="mcq-chip-icon">🏗️</span> API Gateway patterns</div>
+      <div class="mcq-chip"><span class="mcq-chip-icon">📊</span> CAP Theorem</div>
+      <div class="mcq-chip"><span class="mcq-chip-icon">🗂️</span> Object Storage (S3)</div>
+      <div class="mcq-chip"><span class="mcq-chip-icon">🔍</span> Search — Elasticsearch</div>
+      <div class="mcq-chip"><span class="mcq-chip-icon">📈</span> Rate Limiting strategies</div>
+      <div class="mcq-chip"><span class="mcq-chip-icon">🧬</span> Circuit Breaker pattern</div>
+    </div>
+  </div>
+
+  <!-- PROJECT DEEP DIVE -->
+  <div class="sd-block reveal">
+    <h4>🔬 Preparing for Project Deep Dive (45 min)</h4>
+    <p style="font-size:0.875rem;color:var(--muted);margin-bottom:1.25rem;">For every project and internship on your resume, prepare the following structure. They WILL go deep — assume they know the domain.</p>
+    <ul class="sd-checklist">
+      <li><strong>Problem statement</strong>: What was the actual business/technical problem? Why did it matter?</li>
+      <li><strong>Your specific contribution</strong>: Be precise — "I built X" not "we built X". Own your part fully.</li>
+      <li><strong>Architecture decisions</strong>: Why this DB? Why this framework? What alternatives did you consider?</li>
+      <li><strong>Technical challenges</strong>: Hardest bug, hardest design problem, what you had to learn on the fly</li>
+      <li><strong>Scale & metrics</strong>: How many users? What was the QPS? Any performance improvements with numbers?</li>
+      <li><strong>What you'd change</strong>: Every interviewer loves this. Shows maturity. Critique your own work.</li>
+      <li><strong>What you learned</strong>: Technical AND soft skills. Shows growth mindset.</li>
+    </ul>
+    <div class="tip-box" style="margin-top:1rem;"><strong>Pro tip:</strong> Draw a diagram of your project architecture before the interview. Being able to sketch it instantly impresses interviewers and shows deep ownership.</div>
+  </div>
+</section>
+
+<!-- ==================== TIMELINE ==================== -->
+<div class="divider"></div>
+<section class="section" id="timeline">
+  <div class="section-header reveal">
+    <div class="round-badge badge-r1">📅</div>
+    <div>
+      <div class="section-title">Suggested Study Plan</div>
+      <div class="section-meta">6-Week Roadmap — From Zero to All 3 Rounds</div>
+    </div>
+  </div>
+
+  <div class="timeline reveal">
+    <div class="timeline-item">
+      <div class="timeline-week">Week 1–2</div>
+      <div class="timeline-task">Arrays & Strings Foundation (R1 Prep)</div>
+      <div class="timeline-detail">Do NeetCode arrays + strings sections. Solve all 24 problems from the R1 list. Focus on getting to bug-free code in under 20 mins. Skim GFG MCQ bank for OOP, OS, DBMS, CN.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-week">Week 3</div>
+      <div class="timeline-task">Binary Search on Answers (R2 DSA)</div>
+      <div class="timeline-detail">Watch Striver's full BS playlist (10 videos). Solve all 10 BSOA problems. Understand the feasibility function pattern cold. Do CSES Sorting & Searching section.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-week">Week 4</div>
+      <div class="timeline-task">Advanced Strings + Logical Reasoning</div>
+      <div class="timeline-detail">KMP, Trie from NeetCode. Solve 15 GFG puzzles from the Hard section. Practice the bridge crossing, weighing, and probability problems. Work through 10 Mosteller problems.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-week">Week 5</div>
+      <div class="timeline-task">System Design Foundation</div>
+      <div class="timeline-detail">Read DDIA Ch 1–6. Work through System Design Primer. Watch 5 ByteByteGo videos. Design these systems on paper: Instagram, URL Shortener, Twitter, Uber. Draw full diagrams.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-week">Week 6</div>
+      <div class="timeline-task">Mock Interviews + Resume Prep</div>
+      <div class="timeline-detail">1 mock interview per day. Alternate: 1 DSA mock (45 min) + 1 system design mock (45 min). Prepare your project narratives. Do 2 full mock sessions with the complete 3-round structure.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Built for Labs hiring prep · Study hard, think clearly, iterate fast<br>
+  <span style="opacity:0.4;margin-top:0.5rem;display:block;">R1 · OA · DSA · MCQ → R2 · Interview · BS · Riddles → R3 · System Design · Projects</span>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
