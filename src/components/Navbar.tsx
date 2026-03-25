@@ -56,6 +56,12 @@ export function Navbar({ onToggleSidebar, isSidebarOpen }: NavbarProps) {
       </div>
 
       <div className="flex items-center gap-3">
+        <a
+          href="/roadmap"
+          className="hidden sm:inline-flex px-3 py-2 rounded-xl glass hover:bg-white/10 transition-all text-sm font-semibold"
+        >
+          Roadmap
+        </a>
         <button
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           className="p-2.5 rounded-xl glass hover:bg-white/10 transition-all group"
