@@ -1,20 +1,13 @@
-import { motion } from "framer-motion";
 import { Search, Moon, Sun, Menu, X, Github, Command } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
 
 interface NavbarProps {
-  onToggleSidebar: () => void;
-  isSidebarOpen: boolean;
+  onToggleSidebar?: () => void;
+  isSidebarOpen?: boolean;
 }
 
-export function Navbar({ onToggleSidebar, isSidebarOpen }: NavbarProps) {
+export function Navbar({ onToggleSidebar, isSidebarOpen = true }: NavbarProps) {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -23,15 +16,17 @@ export function Navbar({ onToggleSidebar, isSidebarOpen }: NavbarProps) {
   if (!mounted) return null;
 
   return (
-    <header className="fixed top-0 left-0 right-0 h-16 glass border-b border-white/5 z-50 flex items-center justify-between px-6">
-      <div className="flex items-center gap-4">
-        <button
-          onClick={onToggleSidebar}
-          className="lg:hidden p-2 rounded-lg hover:bg-white/5 transition-colors"
-        >
-          {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
-        <div className="flex items-center gap-2">
+    <header className="fixed top-0 left-0 right-0 h-16 glass border-b border-white/5 z-50 flex items-center justify-between px-3 sm:px-6 gap-2">
+      <div className="flex items-center gap-2 sm:gap-4 min-w-0">
+        {onToggleSidebar && (
+          <button
+            onClick={onToggleSidebar}
+            className="lg:hidden p-2 rounded-lg hover:bg-white/5 transition-colors"
+          >
+            {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        )}
+        <div className="flex items-center gap-2 shrink-0">
           <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center shadow-[0_0_15px_var(--primary)]">
             <span className="text-white font-black text-lg tracking-tighter italic">V</span>
           </div>
@@ -41,7 +36,7 @@ export function Navbar({ onToggleSidebar, isSidebarOpen }: NavbarProps) {
         </div>
       </div>
 
-      <div className="flex-1 max-w-xl mx-8 hidden md:block">
+      <div className="flex-1 max-w-xl mx-4 hidden md:block">
         <div className="relative group">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors" size={18} />
           <input
@@ -55,30 +50,42 @@ export function Navbar({ onToggleSidebar, isSidebarOpen }: NavbarProps) {
         </div>
       </div>
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-1 sm:gap-2">
+        <a
+          href="/"
+          className="inline-flex px-2.5 sm:px-3 py-2 rounded-xl glass hover:bg-white/10 transition-all text-xs sm:text-sm font-semibold whitespace-nowrap"
+        >
+          Docs
+        </a>
+        <a
+          href="/system-design"
+          className="inline-flex px-2.5 sm:px-3 py-2 rounded-xl glass hover:bg-white/10 transition-all text-xs sm:text-sm font-semibold whitespace-nowrap"
+        >
+          System Design
+        </a>
         <a
           href="/roadmap"
-          className="hidden sm:inline-flex px-3 py-2 rounded-xl glass hover:bg-white/10 transition-all text-sm font-semibold"
+          className="inline-flex px-2.5 sm:px-3 py-2 rounded-xl glass hover:bg-white/10 transition-all text-xs sm:text-sm font-semibold whitespace-nowrap"
         >
-          Roadmap
+          Guide
         </a>
         <button
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          className="p-2.5 rounded-xl glass hover:bg-white/10 transition-all group"
+          className="p-2 rounded-xl glass hover:bg-white/10 transition-all group shrink-0"
         >
           {theme === "dark" ? (
-            <Sun size={20} className="text-amber-500 group-hover:rotate-45 transition-transform" />
+            <Sun size={18} className="text-amber-500 group-hover:rotate-45 transition-transform" />
           ) : (
-            <Moon size={20} className="text-indigo-500 group-hover:-rotate-12 transition-transform" />
+            <Moon size={18} className="text-indigo-500 group-hover:-rotate-12 transition-transform" />
           )}
         </button>
         <a
           href="https://github.com/srujanmp/vishnudocs"
           target="_blank"
           rel="noopener noreferrer"
-          className="p-2.5 rounded-xl glass hover:bg-white/10 transition-all hidden sm:flex"
+          className="p-2 rounded-xl glass hover:bg-white/10 transition-all hidden sm:flex"
         >
-          <Github size={20} />
+          <Github size={18} />
         </a>
       </div>
     </header>

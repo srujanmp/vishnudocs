@@ -8,6 +8,7 @@ import { QuestionCard } from "./components/QuestionCard";
 import { ReadingProgress } from "./components/ReadingProgress";
 import { CommandMenu } from "./components/CommandMenu";
 import { ThemeProvider } from "./components/ThemeProvider";
+import { SystemDesignPage } from "./components/SystemDesignPage";
 import { allSections, categories, type Section } from "./content/docs";
 import { ArrowLeft, ArrowRight, Clock, BookOpen } from "lucide-react";
 import nprogress from "nprogress";
@@ -56,21 +57,26 @@ export default function App() {
   if (!mounted) return null;
 
   const isRoadmapView = window.location.pathname === "/roadmap";
+  const isSystemDesignView = window.location.pathname === "/system-design";
+
+  if (isSystemDesignView) {
+    return (
+      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+        <Navbar isSidebarOpen={false} onToggleSidebar={undefined} />
+        <SystemDesignPage />
+      </ThemeProvider>
+    );
+  }
 
   if (isRoadmapView) {
     return (
       <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
         <div className="relative min-h-screen bg-background">
-          <a
-            href="/"
-            className="fixed top-4 right-4 z-50 px-4 py-2 rounded-xl glass border border-white/10 hover:bg-white/10 transition-all text-sm font-semibold"
-          >
-            Back to Docs
-          </a>
+          <Navbar isSidebarOpen={false} onToggleSidebar={undefined} />
           <iframe
             src="/roadmap.html"
             title="Labs Hiring Roadmap"
-            className="w-full h-screen border-0"
+            className="w-full h-[calc(100vh-4rem)] border-0 pt-16"
           />
         </div>
       </ThemeProvider>
