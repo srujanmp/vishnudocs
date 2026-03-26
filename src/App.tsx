@@ -8,6 +8,7 @@ import { QuestionCard } from "./components/QuestionCard";
 import { ReadingProgress } from "./components/ReadingProgress";
 import { CommandMenu } from "./components/CommandMenu";
 import { ThemeProvider } from "./components/ThemeProvider";
+import { SystemDesignPage } from "./components/SystemDesignPage";
 import { allSections, categories, type Section } from "./content/docs";
 import { ArrowLeft, ArrowRight, Clock, BookOpen } from "lucide-react";
 import nprogress from "nprogress";
@@ -56,6 +57,16 @@ export default function App() {
   if (!mounted) return null;
 
   const isRoadmapView = window.location.pathname === "/roadmap";
+  const isSystemDesignView = window.location.pathname === "/system-design";
+
+  if (isSystemDesignView) {
+    return (
+      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+        <Navbar isSidebarOpen={false} onToggleSidebar={undefined} />
+        <SystemDesignPage />
+      </ThemeProvider>
+    );
+  }
 
   if (isRoadmapView) {
     return (
