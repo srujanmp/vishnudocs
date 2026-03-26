@@ -10,11 +10,11 @@ function cn(...inputs: ClassValue[]) {
 }
 
 interface NavbarProps {
-  onToggleSidebar: () => void;
-  isSidebarOpen: boolean;
+  onToggleSidebar?: () => void;
+  isSidebarOpen?: boolean;
 }
 
-export function Navbar({ onToggleSidebar, isSidebarOpen }: NavbarProps) {
+export function Navbar({ onToggleSidebar, isSidebarOpen = true }: NavbarProps) {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -25,12 +25,14 @@ export function Navbar({ onToggleSidebar, isSidebarOpen }: NavbarProps) {
   return (
     <header className="fixed top-0 left-0 right-0 h-16 glass border-b border-white/5 z-50 flex items-center justify-between px-6">
       <div className="flex items-center gap-4">
-        <button
-          onClick={onToggleSidebar}
-          className="lg:hidden p-2 rounded-lg hover:bg-white/5 transition-colors"
-        >
-          {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        {onToggleSidebar && (
+          <button
+            onClick={onToggleSidebar}
+            className="lg:hidden p-2 rounded-lg hover:bg-white/5 transition-colors"
+          >
+            {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        )}
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center shadow-[0_0_15px_var(--primary)]">
             <span className="text-white font-black text-lg tracking-tighter italic">V</span>
@@ -56,6 +58,12 @@ export function Navbar({ onToggleSidebar, isSidebarOpen }: NavbarProps) {
       </div>
 
       <div className="flex items-center gap-3">
+        <a
+          href="/system-design"
+          className="hidden sm:inline-flex px-3 py-2 rounded-xl glass hover:bg-white/10 transition-all text-sm font-semibold"
+        >
+          System Design
+        </a>
         <a
           href="/roadmap"
           className="hidden sm:inline-flex px-3 py-2 rounded-xl glass hover:bg-white/10 transition-all text-sm font-semibold"
