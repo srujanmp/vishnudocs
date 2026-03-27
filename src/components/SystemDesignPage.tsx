@@ -180,13 +180,6 @@ export function SystemDesignPage() {
     <div className="min-h-screen bg-background text-foreground">
       <ReadingProgress />
       <ScrollPercentage />
-      <a
-        href="/"
-        className="fixed top-20 right-6 z-50 px-4 py-2 rounded-xl glass border border-white/10 hover:bg-white/10 transition-all text-sm font-semibold"
-      >
-        Docs
-      </a>
-
       <main className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-10 py-24">
         <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_300px] gap-8">
           <section className="rounded-3xl border border-white/10 bg-card/40 backdrop-blur-md shadow-2xl overflow-hidden min-w-0">

@@ -72,16 +72,11 @@ export default function App() {
     return (
       <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
         <div className="relative min-h-screen bg-background">
-          <a
-            href="/"
-            className="fixed top-4 right-4 z-50 px-4 py-2 rounded-xl glass border border-white/10 hover:bg-white/10 transition-all text-sm font-semibold"
-          >
-            Back to Docs
-          </a>
+          <Navbar isSidebarOpen={false} onToggleSidebar={undefined} />
           <iframe
             src="/roadmap.html"
             title="Labs Hiring Roadmap"
-            className="w-full h-screen border-0"
+            className="w-full h-[calc(100vh-4rem)] border-0 pt-16"
           />
         </div>
       </ThemeProvider>
