@@ -75,6 +75,22 @@ export function Navbar({ onToggleSidebar, isSidebarOpen = true }: NavbarProps) {
         >
           Guide
         </a>
+        <a
+          href="https://github.com/donnemartin/system-design-primer/blob/master/README.md#system-design-topics-start-here"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden lg:inline-flex px-3 py-2 rounded-xl glass hover:bg-white/10 transition-all text-sm font-semibold whitespace-nowrap"
+        >
+          SD Primer
+        </a>
+        <a
+          href="https://hpbn.co/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden lg:inline-flex px-3 py-2 rounded-xl glass hover:bg-white/10 transition-all text-sm font-semibold whitespace-nowrap"
+        >
+          HPBN
+        </a>
         <button
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           className="p-2 rounded-xl glass hover:bg-white/10 transition-all group shrink-0"
